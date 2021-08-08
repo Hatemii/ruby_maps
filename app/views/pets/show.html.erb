@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pet.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pet.description %>
+</p>
+
+<p>
+  <strong>Species:</strong>
+  <%= @pet.species %>
+</p>
+
+<p>
+  <strong>Breed:</strong>
+  <%= @pet.breed %>
+</p>
+
+<p>
+  <strong>Lost on:</strong>
+  <%= @pet.lost_on %>
+</p>
+
+<p>
+  <strong>Last known latitude:</strong>
+  <%= @pet.last_known_latitude %>
+</p>
+
+<p>
+  <strong>Last known longitude:</strong>
+  <%= @pet.last_known_longitude %>
+</p>
+
+<%= link_to 'Edit', edit_pet_path(@pet) %> |
+<%= link_to 'Back', pets_path %>
