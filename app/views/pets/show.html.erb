@@ -35,5 +35,10 @@
   <%= @pet.last_known_longitude %>
 </p>
 
-<%= link_to 'Edit', edit_pet_path(@pet) %> |
-<%= link_to 'Back', pets_path %>
+<p>
+  <strong>Image:</strong>
+  <%= image_tag(@pet.image, size: "350x300" ) %>
+</p>
+
+<%= link_to 'Edit', edit_pet_path(@pet), class: "btn btn-primary" %> |
+<%= link_to 'Back', pets_path, class: "btn btn-secondary" %>

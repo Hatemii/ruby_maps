@@ -9,7 +9,8 @@ class PetsController < ApplicationController
   # GET /pets/1 or /pets/1.json
   def show
     @pet = Pet.find(params[:id])
-    format.json { render :@pet.as_json.merge(image: url_for(@pet.image))}
+    @pet.as_json.merge(image: url_for(@pet.image))
+    @pet
   end
 
   # GET /pets/new

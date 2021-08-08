@@ -14,8 +14,16 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
 @import "bootstrap";
+
+html {
+  font-size: 18px;
+  margin: auto;
+  font-family: Libre Baskerville;
+}
+
 .table {
-  text-align:center;
+  text-align: center;
   font-family: Arial;
 }
