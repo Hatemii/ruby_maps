@@ -17,18 +17,18 @@
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
     <%= form.label :species %>
-    <%= form.text_field :species %>
+    <%= form.select :species, ["Cat", "Dog", "Hamsters", "Birds" ]%>
   </div>
 
   <div class="field">
     <%= form.label :breed %>
     <%= form.text_field :breed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+      <%= form.text_field :description %>
   </div>
 
   <div class="field">

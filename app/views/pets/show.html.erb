@@ -6,11 +6,6 @@
 </p>
 
 <p>
-  <strong>Description:</strong>
-  <%= @pet.description %>
-</p>
-
-<p>
   <strong>Species:</strong>
   <%= @pet.species %>
 </p>
@@ -18,6 +13,11 @@
 <p>
   <strong>Breed:</strong>
   <%= @pet.breed %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pet.description %>
 </p>
 
 <p>
@@ -35,10 +35,12 @@
   <%= @pet.last_known_longitude %>
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= image_tag(@pet.image, size: "350x300" ) %>
-</p>
+<div>
+  <p> <strong>Image:</strong> </p>
+  <p> <%= image_tag(@pet.image, size: "180x100" ) %></p>
+</div>
+
+<br />
 
 <%= link_to 'Edit', edit_pet_path(@pet), class: "btn btn-primary" %> |
 <%= link_to 'Back', pets_path, class: "btn btn-secondary" %>

@@ -1,0 +1,41 @@
+<div style="margin-top: 150px;">
+
+<h2 class="text-center" style="font-family: Verdana, Geneva, Tahoma, sans-serif;"> Welcome to Lost & Found Pets</h2>
+<hr />
+
+<br />
+<br />
+  <div class="card-group">
+  <div class="col-sm-4">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold;">Report</h5>
+          <p class="card-text">If you want to see lost pets just click this link below.</p>
+          <%= link_to 'Lost Pets' , pets_path, {:style=>'color:#000000;', :class => "btn btn-info"}%>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="col-sm-4">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold;">Report</h5>
+          <p class="card-text">If you want to see found pets just click this link below.</p>
+          <a href="#" class="btn btn-info" style="color: rgb(0, 0, 0);">Found Pets</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold;">Browse</h5>
+          <p class="card-text">You can see all lost and found pets, just click this link below.</p>
+          <a href="#" class="btn btn-info" style="color: rgb(0, 0, 0);">Lost & Found Pets</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
