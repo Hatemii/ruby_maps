@@ -11,29 +11,39 @@
         <div class="card-body">
           <h5 class="card-title" style="font-weight: bold;">Report</h5>
           <p class="card-text">If you want to see lost pets just click this link below.</p>
-          <%= link_to 'Lost Pets' , pets_path, {:style=>'color:#000000;', :class => "btn btn-info"}%>
+          
+          <div class="container">
+            <%= link_to 'Lost Pets' , new_pet_path, {:style=>'color:#000000;', :class => "btn btn-info"}%>
+            <%= link_to 'Found Pets' , "", {:style=>'color:#000000; float:right; ', :class => "btn btn-warning"}%>
+          </div>
         </div>
       </div>
     </div>
 
 
-
-    <div class="col-sm-4">
-      <div class="card text-white bg-primary mb-3">
-        <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">Report</h5>
-          <p class="card-text">If you want to see found pets just click this link below.</p>
-          <a href="#" class="btn btn-info" style="color: rgb(0, 0, 0);">Found Pets</a>
-        </div>
-      </div>
-    </div>
 
     <div class="col-sm-4">
       <div class="card text-white bg-primary mb-3">
         <div class="card-body">
           <h5 class="card-title" style="font-weight: bold;">Browse</h5>
+          <p class="card-text">If you want to see found pets just click this link below.</p>
+
+          <div class="container">
+            <%= link_to 'All Pets' , pets_path, {:style=>'color:#000000;', :class => "btn btn-warning"}%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-4">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-body">
+          <h5 class="card-title" style="font-weight: bold;">Google Map</h5>
           <p class="card-text">You can see all lost and found pets, just click this link below.</p>
-          <a href="#" class="btn btn-info" style="color: rgb(0, 0, 0);">Lost & Found Pets</a>
+          
+          <div class="container">
+            <a href="https://www.google.com/maps" target="_blank" class="btn btn-warning" style="color: rgb(0, 0, 0);">Show On Map</a>
+          </div>
         </div>
       </div>
     </div>
