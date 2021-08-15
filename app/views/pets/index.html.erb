@@ -13,6 +13,7 @@
       <th>Last known latitude</th>
       <th>Last known longitude</th>
       <th>Other Info</th>
+      <th>Posted On</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -24,10 +25,11 @@
         <td><%= pet.description %></td>
         <td><%= pet.species %></td>
         <td><%= pet.breed %></td>
-        <td><%= pet.lost_on %></td>
+        <td><%= pet.lost_on.strftime('%a, %d %b %Y') %></td>
         <td><%= pet.last_known_latitude %></td>
         <td><%= pet.last_known_longitude %></td>
         <td><%= pet.other_info %></td>
+        <td><%= pet.created_at.strftime('%a, %d %b %Y %H:%M:%S') %></td>
         <td>
           <%= link_to 'Show', pet %>
           | <%= link_to 'Edit', edit_pet_path(pet) %>
