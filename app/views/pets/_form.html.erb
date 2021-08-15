@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :species %>
-    <%= form.select :species, ["Cat", "Dog", "Hamsters", "Birds" ]%>
+    <%= form.select :species, ["Cat", "Dog", "Hamster", "Bird", "Others"]%>
   </div>
 
   <div class="field">
@@ -44,6 +44,11 @@
   <div class="field">
     <%= form.label :last_known_longitude %>
     <%= form.text_field :last_known_longitude %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_info %>
+    <%= form.text_field :other_info %>
   </div>
 
   <div class="field">

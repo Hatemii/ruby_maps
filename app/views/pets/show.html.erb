@@ -35,6 +35,11 @@
   <%= @pet.last_known_longitude %>
 </p>
 
+<p>
+  <strong>Other info:</strong>
+  <%= @pet.other_info %>
+</p>
+
 <div>
   <p> <strong>Image:</strong> </p>
   <p> <%= image_tag(@pet.image, size: "180x100" ) %></p>

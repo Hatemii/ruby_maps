@@ -12,6 +12,7 @@
       <th>Lost on</th>
       <th>Last known latitude</th>
       <th>Last known longitude</th>
+      <th>Other Info</th>
       <th>Action</th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
         <td><%= pet.lost_on %></td>
         <td><%= pet.last_known_latitude %></td>
         <td><%= pet.last_known_longitude %></td>
+        <td><%= pet.other_info %></td>
         <td>
           <%= link_to 'Show', pet %>
           | <%= link_to 'Edit', edit_pet_path(pet) %>
