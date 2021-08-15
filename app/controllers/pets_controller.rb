@@ -9,7 +9,7 @@ class PetsController < ApplicationController
   # GET /pets/1 or /pets/1.json
   def show
     @pet = Pet.find(params[:id])
-    @pet.as_json.merge(image: url_for(@pet.image))
+    @pet.as_json.merge(image: url_for(@pet.image)) if !@pet.image.blank?
     @pet
   end
 
@@ -56,6 +56,15 @@ class PetsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to pets_url, notice: "Pet was successfully destroyed." }
       format.json { head :no_content }
+    end
+  end
+
+  def remove_image
+    @pet = Pet.find(params[:pet_id])
+    @pet.image.delete
+
+    respond_to do |format|
+      format.html {redirect_to @pet, notice: "Image successfully removed"}
     end
   end
 

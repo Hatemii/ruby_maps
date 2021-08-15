@@ -1,6 +1,76 @@
 <h1>Editing Pet</h1>
 
-<%= render 'form', pet: @pet %>
+<%= form_with(model: @pet) do |form| %>
+  <% if @pet.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@pet.errors.count, "error" ) %> prohibited this pet from being saved:
+      </h2>
+
+      <ul>
+        <% @pet.errors.each do |error| %>
+          <li>
+            <%= error.full_message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+      <div class="field">
+        <%= form.label :name %>
+          <%= form.text_field :name %>
+      </div>
+
+      <div class="field">
+        <%= form.label :species %>
+          <%= form.select :species, ["Cat", "Dog" , "Hamster" , "Bird" , "Others" ]%>
+      </div>
+
+      <div class="field">
+        <%= form.label :breed %>
+          <%= form.text_field :breed %>
+      </div>
+
+      <div class="field">
+        <%= form.label :description %>
+          <br />
+          <%= form.text_area :description, cols: "25" , placeholder: "max 100 character" , maxlength: 100 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :lost_on %>
+          <%= form.text_field :lost_on %>
+      </div>
+
+      <div class="field">
+        <%= form.label :last_known_latitude %>
+          <%= form.text_field :last_known_latitude %>
+      </div>
+
+      <div class="field">
+        <%= form.label :last_known_longitude %>
+          <%= form.text_field :last_known_longitude %>
+      </div>
+
+      <div class="field">
+        <%= form.label :other_info %>
+          <br />
+          <%= form.text_area :other_info, cols: "25" , placeholder: "max 30 character" , maxlength: 30 %>
+      </div>
+
+      <div class="field">
+        <%= form.label :image %>
+          <br />
+          <%= form.file_field :image %>
+          <br />
+        <%= link_to 'Remove Image', pet_remove_image_path(@pet), method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Submit" , class: "btn btn-default btn-success" %>
+      </div>
+      <% end %>
 
 <%= link_to 'Show', @pet , class: "btn btn-primary"%> |
 <%= link_to 'Back', pets_path , class: "btn btn-secondary"%>

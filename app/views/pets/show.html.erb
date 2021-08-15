@@ -36,13 +36,17 @@
 </p>
 
 <p>
-  <strong>Other info:</strong>
+  <strong>Other Info:</strong>
   <%= @pet.other_info %>
 </p>
 
 <div>
   <p> <strong>Image:</strong> </p>
-  <p> <%= image_tag(@pet.image, size: "180x100" ) %></p>
+    <% if !@pet.image.blank? %>
+      <p> <%= image_tag(@pet.image, size: "180x100" ) %> </p>
+    <% else %>
+      <p>No image available!</p>
+    <% end %>
 </div>
 
 <br />
