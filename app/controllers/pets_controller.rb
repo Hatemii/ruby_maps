@@ -1,5 +1,7 @@
 class PetsController < ApplicationController
-  before_action :set_pet, only: %i[ show edit update destroy ]
+
+  # users can not craete, update, delet if they are not logged in!
+  before_action :authenticate_user!, :except => [:index, :show]
 
   # GET /pets or /pets.json
   def index
