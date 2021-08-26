@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {registrations: "registrations"}
   resources :pets do
     delete 'remove_image', to: 'pets#remove_image'
   end
