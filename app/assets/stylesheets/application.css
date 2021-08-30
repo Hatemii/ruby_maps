@@ -20,10 +20,53 @@
 html {
   font-size: 18px;
   margin: auto;
-  font-family: Libre Baskerville;
+  font-family: "Libre Baskerville";
 }
 
 .table {
   text-align: center;
   font-family: Arial;
+}
+
+.authform {
+  padding-top: 30px;
+  max-width: 400px;
+  margin: 0 auto;
+  font-size: 18px;
+}
+.authform form {
+  @extend .well;
+  @extend .well-lg;
+  padding-bottom: 10px;
+}
+.authform .right {
+  float: right !important;
+}
+.authform .button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+.authform fieldset {
+  @extend .well;
+}
+
+/* nav */
+.navbar {
+  background-color: rgb(50, 51, 51);
+}
+
+.navbar-nav {
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  font-family: monospace;
+}
+
+.nav-link:hover {
+  background-color: transparent;
+  border-bottom: 1px solid white;
+}
+
+.navbar-brand:hover {
+  background-color: transparent;
 }

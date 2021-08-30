@@ -1,13 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar (LOGO)</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+  <a class="navbar-brand" 
+     href="/"> 
+     <%= image_tag '' %>
+  </a>
+
   <div class="collapse navbar-collapse" id="navbarNav">
+    
     <ul class="navbar-nav ml-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <%= link_to 'Home' , root_path, class: 'nav-link' %>
       </li>
  
       <li class="nav-item active">
@@ -18,18 +20,22 @@
         <a class="nav-link" href="#">Contact <span class="sr-only">(current)</span></a>
       </li>
 
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
-      </li>
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to 'Sign Out' , destroy_user_session_path, method: :delete, data: { confirm: 'Are you sure?' },
+            class: 'nav-link' %>
+        </li>
 
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Sign in <span class="sr-only">(current)</span></a>
-      </li>
-
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Sign out <span class="sr-only">(current)</span></a>
-      </li>
- 
+      <% else %>
+        <li class="nav-item active">
+          <%= link_to 'Login' , user_session_path, class: 'nav-link' %>
+        </li>
+        
+        <li class="nav-item active">
+          <%= link_to 'Sign Up' , new_user_registration_path, class: 'nav-link' %>
+        </li>
+      <% end %>
     </ul>
+
   </div>
 </nav>
