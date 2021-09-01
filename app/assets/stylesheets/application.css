@@ -53,20 +53,28 @@ html {
 
 /* nav */
 .navbar {
-  background-color: rgb(50, 51, 51);
+  background-color: rgb(24, 24, 24);
 }
 
 .navbar-nav {
+  font-family: "Libre Baskerville";
   font-size: 18px;
   letter-spacing: 0.8px;
   font-family: monospace;
 }
+.nav-link {
+  color: rgb(255, 230, 0);
+}
 
 .nav-link:hover {
   background-color: transparent;
-  border-bottom: 1px solid white;
+  color: rgba(0, 140, 255, 0.87);
 }
 
 .navbar-brand:hover {
+  background-color: transparent;
+}
+
+a:hover {
   background-color: transparent;
 }
