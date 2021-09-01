@@ -34,14 +34,17 @@ html {
   margin: 0 auto;
   font-size: 18px;
 }
+
 .authform form {
   @extend .well;
   @extend .well-lg;
   padding-bottom: 10px;
 }
+
 .authform .right {
   float: right !important;
 }
+
 .authform .button {
   @extend .btn;
   @extend .btn-primary;
@@ -75,6 +78,11 @@ html {
   background-color: transparent;
 }
 
+/* devise links */
 a:hover {
   background-color: transparent;
+}
+
+label {
+  font-weight: bold;
 }
