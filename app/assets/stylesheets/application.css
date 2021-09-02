@@ -32,7 +32,7 @@ html {
   padding-top: 30px;
   max-width: 400px;
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .authform form {
@@ -60,10 +60,11 @@ html {
 }
 
 .navbar-nav {
-  font-family: "Libre Baskerville";
-  font-size: 18px;
+  font-family: "Courier New";
+  font-size: 15px;
   letter-spacing: 0.8px;
   font-family: monospace;
+  font-weight: bold;
 }
 .nav-link {
   color: rgb(255, 230, 0);
@@ -71,7 +72,7 @@ html {
 
 .nav-link:hover {
   background-color: transparent;
-  color: rgba(0, 140, 255, 0.87);
+  color: rgb(0, 119, 199);
 }
 
 .navbar-brand:hover {
