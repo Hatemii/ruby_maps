@@ -2,6 +2,7 @@ class PetsController < ApplicationController
 
   # users can not craete, update, delet if they are not logged in!
   before_action :authenticate_user!, :except => [:index, :show]
+  before_action :set_pet, only: [:edit, :update]
 
   # GET /pets or /pets.json
   def index
@@ -22,6 +23,7 @@ class PetsController < ApplicationController
 
   # GET /pets/1/edit
   def edit
+    @pet = Pet.find(params[:id])
   end
 
   # POST /pets or /pets.json

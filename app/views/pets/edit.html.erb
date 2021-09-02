@@ -1,7 +1,7 @@
 <h1>Editing Pet</h1>
 
 <%= form_with(model: @pet) do |form| %>
-  <% if @pet.errors.any? %>
+  <% if @pet && @pet.errors.any? %>
     <div id="error_explanation">
       <h2>
         <%= pluralize(@pet.errors.count, "error" ) %> prohibited this pet from being saved:
@@ -68,9 +68,6 @@
       </div>
 
       <div class="actions">
-        <%= form.submit "Submit" , class: "btn btn-default btn-success" %>
+        <%= form.submit "Save" , class: "btn btn-default btn-success" %>
       </div>
-      <% end %>
-
-<%= link_to 'Show', @pet , class: "btn btn-primary"%> |
-<%= link_to 'Back', pets_path , class: "btn btn-secondary"%>
+    <% end %>
