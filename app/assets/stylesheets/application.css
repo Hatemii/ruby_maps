@@ -97,6 +97,11 @@ label {
   background: rgb(245, 245, 245);
 }
 
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
 /* home wallpaper */
 header {
   background-image: url("wallpaper.png");
