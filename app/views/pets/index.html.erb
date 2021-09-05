@@ -6,8 +6,9 @@
   <% @pets.each do |pet| %>
     <div class="col-md-4">
       <div class="card card_on_profile" style="width: 20rem; margin: auto; margin-top: 40px; font-weight:bold">
+       
         <% if !pet.image.blank? %>
-          <img class="card-img-top" src=<%=image_tag(pet.image) %> alt="Card image cap">
+          <%=image_tag(pet.image) %> 
         <% else %>
           <img class="card-img-top" src="" alt="no image available!">
         <% end %>
@@ -30,7 +31,7 @@
                 </tr>
               </tbody>
           </table>
-        <%= link_to 'Read More', pet, class: "btn btn-primary" %>
+            <%= link_to 'Read More', pet, class: "btn btn-primary" %>
         </div>
         <div class="card-footer text-muted text-center">
           posted - <%= pet.created_at.strftime('%a, %d %b %Y') %>
