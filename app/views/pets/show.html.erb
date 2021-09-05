@@ -51,5 +51,6 @@
 
 <br />
 
-<%= link_to 'Edit', edit_pet_path(@pet), class: "btn btn-primary" %> |
-<%= link_to 'Back', pets_path, class: "btn btn-secondary" %>
+<% if @pet.user_id == current_user.id  %>
+  <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary" %>
+<% end %>
