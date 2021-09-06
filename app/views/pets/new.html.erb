@@ -33,28 +33,33 @@
       </div>
 
       <div class="field">
+        <%= form.label :injured %>
+        <%= form.check_box :injured %>
+      </div>
+
+      <div class="field">
         <%= form.label :description %>
           <br />
           <%= form.text_area :description, cols: "25" , placeholder: "max 100 character" , maxlength: 100 %>
       </div>
 
       <div class="field">
-        <%= form.label :lost_on %>
-          <%= form.text_field :lost_on %>
+        <%= form.label :lost_on, "Lost On" %>
+        <%= form.text_field :lost_on %>
       </div>
 
       <div class="field">
-        <%= form.label :last_known_latitude %>
-          <%= form.text_field :last_known_latitude %>
+        <%= form.label :last_known_latitude, "Last Known Latitude" %>
+        <%= form.text_field :last_known_latitude %>
       </div>
 
       <div class="field">
-        <%= form.label :last_known_longitude %>
+        <%= form.label :last_known_longitude, "Last Known Longitude" %>
         <%= form.text_field :last_known_longitude %>
       </div>
 
       <div class="field">
-        <%= form.label :other_info %>
+        <%= form.label :other_info, "Other Info" %>
           <br />
           <%= form.text_area :other_info, cols: "25" , placeholder: "max 30 character" , maxlength: 30 %>
       </div>

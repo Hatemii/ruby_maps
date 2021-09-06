@@ -27,11 +27,11 @@
                 </tr>
                 <tr>
                   <td>Lost on</td>
-                  <td><%= pet.lost_on.strftime('%a, %d %b %Y') %></td>
+                  <td><%= pet.lost_on_format %></td>
                 </tr>
               </tbody>
           </table>
-            <%= link_to 'Read More', pet, class: "btn btn-primary" %>
+            <%= link_to 'Read More', pet, class: "btn btn-primary", style: "color: black; font-weight: bold" %>
         </div>
         <div class="card-footer text-muted text-center">
           posted - <%= pet.created_at.strftime('%a, %d %b %Y') %>
