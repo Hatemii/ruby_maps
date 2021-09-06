@@ -79,8 +79,9 @@
 
         <% if @pet.user_id==current_user.id %>
           <div class="card-footer text-center">
-              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary", style:"color: black; font-weight: bold" %>
-          </div>
+              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary", style:"color: black; font-weight: bold" %> |
+              <%= link_to 'Delete' , @pet, class: "btn btn-danger", style:"color: black; font-weight: bold", method: :delete, data: { confirm: 'Are you sure?' } %> 
+            </div>
         <% end %>
       </div>
     </div>
