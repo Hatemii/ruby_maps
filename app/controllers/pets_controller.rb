@@ -29,7 +29,9 @@ class PetsController < ApplicationController
   # POST /pets or /pets.json
   def create
     @pet = Pet.new(pet_params)
-
+    @pet.user_id = current_user.id
+    @pet.save
+    
     respond_to do |format|
       if @pet.save
         format.html { redirect_to @pet, notice: "Pet was successfully created." }
@@ -56,6 +58,7 @@ class PetsController < ApplicationController
 
   # DELETE /pets/1 or /pets/1.json
   def destroy
+    @pet = Pet.find(params[:id])
     @pet.destroy
     respond_to do |format|
       format.html { redirect_to pets_url, notice: "Pet was successfully destroyed." }
@@ -80,6 +83,6 @@ class PetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pet_params
-      params.require(:pet).permit(:name, :description, :species, :breed, :lost_on, :last_known_latitude, :last_known_longitude,:image, :other_info)
+      params.require(:pet).permit(:name, :description, :species, :breed, :lost_on, :last_known_latitude, :last_known_longitude,:image, :other_info, :injured)
     end
 end

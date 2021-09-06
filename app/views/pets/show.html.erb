@@ -1,55 +1,102 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @pet.name %>
-</p>
 
-<p>
-  <strong>Species:</strong>
-  <%= @pet.species %>
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 mt-3">
+      <div class="card">
+        <div class="card-horizontal">
 
-<p>
-  <strong>Breed:</strong>
-  <%= @pet.breed %>
-</p>
+          <div class="img-responsive" style="height: fit-content;">
+            <% if !@pet.image.blank? %>
+              <%= image_tag(@pet.image, size: "180x100" ) %>
+            <% else %>
+              <p>No image available!</p>
+            <% end %>
+          </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @pet.description %>
-</p>
+          <div class="card-body">
+            <h4 class="card-title"> <strong><%= @pet.name.upcase %></strong></h4>
+            
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Lost on: </strong>
+                <%= @pet.lost_on_format %> </p>
+              </div>
+              
+              <div class="col-sm-6">
+                <% if @pet.injured %>
+                  <p class="card-text"><strong>Injured: </strong> Yes</p>
+                <% else %>
+                  <p class="card-text"><strong>Injured: </strong> No</p>
+                <% end %>
+              </div>
+            </div>
 
-<p>
-  <strong>Lost on:</strong>
-  <%= @pet.lost_on %>
-</p>
+            <hr />
 
-<p>
-  <strong>Last known latitude:</strong>
-  <%= @pet.last_known_latitude %>
-</p>
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Species: </strong>
+                  <%= @pet.species %>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Breed: </strong>
+                  <%= @pet.description %>
+                </p>
+              </div>
+            </div>
+            <hr />
 
-<p>
-  <strong>Last known longitude:</strong>
-  <%= @pet.last_known_longitude %>
-</p>
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Last known latitude: </strong>
+                  <%= @pet.last_known_latitude %>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Last known longitude: </strong>
+                  <%= @pet.last_known_longitude %>
+                </p>
+              </div>
+            </div>
+            <hr />
+            
+            <div class="row">
+              <div class="col-sm-12">
+                <p class="card-text"><strong>Description: </strong>
+                  <%= @pet.description %>
+                </p>
+              </div>
+            </div>
+            <hr />
 
-<p>
-  <strong>Other Info:</strong>
-  <%= @pet.other_info %>
-</p>
+            <div class="row">
+              <div class="col-sm-12">
+                <p class="card-text"><strong>Other Info: </strong>
+                  <%= @pet.other_info %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<div>
-  <p> <strong>Image:</strong> </p>
-    <% if !@pet.image.blank? %>
-      <p> <%= image_tag(@pet.image, size: "180x100" ) %> </p>
-    <% else %>
-      <p>No image available!</p>
-    <% end %>
+        <div class="card-footer text-center">
+          <small class="text-muted">last update <%= @pet.updated_at.strftime('%a, %d %b %Y %H:%M') %></small>
+        </div>
+
+        <% if @pet.user_id==current_user.id %>
+          <div class="card-footer text-center">
+              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary", style:"color: black; font-weight: bold" %> |
+              <%= link_to 'Delete' , @pet, class: "btn btn-danger", style:"color: black; font-weight: bold", method: :delete, data: { confirm: 'Are you sure?' } %> 
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <br />
 
-<%= link_to 'Edit', edit_pet_path(@pet), class: "btn btn-primary" %> |
-<%= link_to 'Back', pets_path, class: "btn btn-secondary" %>
+

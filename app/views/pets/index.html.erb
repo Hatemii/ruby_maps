@@ -2,17 +2,20 @@
 
 <h5>Total Pets - <%= @pets.count%></h5>
 
+<div class="container-fluid content-row">
 <div class="row" style="margin-bottom: 100px;">
+  
   <% @pets.each do |pet| %>
-    <div class="col-md-4">
-      <div class="card card_on_profile" style="width: 20rem; margin: auto; margin-top: 40px; font-weight:bold">
+    <div class="col-md-4 align-items-stretch" style="margin-bottom: 5%;">
+      <div class="card card_on_profile h-100">
+       
         <% if !pet.image.blank? %>
-          <img class="card-img-top" src=<%=image_tag(pet.image) %> alt="Card image cap">
+          <%=image_tag(pet.image) %> 
         <% else %>
           <img class="card-img-top" src="" alt="no image available!">
         <% end %>
        
-        <div class="card-body text-center">
+        <div class="card-body text-center d-flex flex-column">
           <h5 class="card-title" style="font-weight: bold;">Name</h5>
           <table class="table">
               <tbody>
@@ -26,11 +29,12 @@
                 </tr>
                 <tr>
                   <td>Lost on</td>
-                  <td><%= pet.lost_on.strftime('%a, %d %b %Y') %></td>
+                  <td><%= pet.lost_on_format %></td>
                 </tr>
               </tbody>
           </table>
-        <%= link_to 'Read More', pet, class: "btn btn-primary" %>
+          
+          <%= link_to 'Read More', pet, class: "mt-auto btn btn-primary", style: "color: black; font-weight: bold" %>
         </div>
         <div class="card-footer text-muted text-center">
           posted - <%= pet.created_at.strftime('%a, %d %b %Y') %>
@@ -38,4 +42,5 @@
       </div>
     </div>
   <% end %>
+</div>
 </div>
