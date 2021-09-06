@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   end
 
   root "home#index"
+  get  'about/index', to:'about#index'
+  get  'contact/index', to:'contact#index'
+
 end
