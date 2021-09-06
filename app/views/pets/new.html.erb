@@ -33,6 +33,11 @@
       </div>
 
       <div class="field">
+        <%= form.label :injured %>
+        <%= form.check_box :injured %>
+      </div>
+
+      <div class="field">
         <%= form.label :description %>
           <br />
           <%= form.text_area :description, cols: "25" , placeholder: "max 100 character" , maxlength: 100 %>

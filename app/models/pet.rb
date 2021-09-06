@@ -4,4 +4,9 @@ class Pet < ApplicationRecord
 
   validates_presence_of  :name, :description, :species, :breed, :lost_on, :last_known_latitude, :last_known_longitude
   has_many :pets
+
+  def lost_on_format
+    self.lost_on.strftime('%a, %d %b %Y')
+  end
+
 end

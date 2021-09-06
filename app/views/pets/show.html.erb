@@ -20,7 +20,7 @@
             
             <div class="row">
               <div class="col-sm-12">
-                <h6 class="card-text"><strong>Lost on: </strong> <%= @pet.lost_on.strftime('%a, %d %b %Y') %></h6>
+                <h6 class="card-text"><strong>Lost on: </strong> <%= @pet.lost_on_format %></h6>
               </div>
             </div>
 
@@ -79,7 +79,7 @@
 
         <% if @pet.user_id==current_user.id %>
           <div class="card-footer text-center">
-              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary" %>
+              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary", style:"color: black; font-weight: bold" %>
           </div>
         <% end %>
       </div>
