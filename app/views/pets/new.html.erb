@@ -17,63 +17,78 @@
     </div>
     <% end %>
 
-      <div class="field">
-        <%= form.label :name %>
-          <%= form.text_field :name %>
-      </div>
+    <div class="container">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: "form-control", placeholder:"Name" %>
+        </div>
 
-      <div class="field">
-        <%= form.label :species %>
-          <%= form.select :species, ["Cat", "Dog" , "Bird" , "Hamster", "Reptiles" , "Others" ]%>
-      </div>
+        <div class="form-group col-md-3">
+          <%= form.label :species %>
+          <%= form.select :species, ["Cat", "Dog" , "Bird" , "Hamster" , "Reptiles" , "Others" ], {}, class: "form-control" %>
+        </div>
 
-      <div class="field">
-        <%= form.label :breed %>
-          <%= form.text_field :breed %>
-      </div>
+        <div class="form-group col-md-3">
+          <%= form.label :breed %>
+          <%= form.text_field :breed, class: "form-control", placeholder:"Breed" %>
+        </div>
 
-      <div class="field">
-        <%= form.label :injured %>
-        <%= form.check_box :injured %>
-      </div>
+        <div class="form-group col-md-3">
+          <%= form.label :injured %> <br />
+          <%= form.check_box :injured %>
+        </div>
+        </div>
 
-      <div class="field">
-        <%= form.label :description %>
-          <br />
-          <%= form.text_area :description, cols: "25" , placeholder: "max 100 character" , maxlength: 100 %>
-      </div>
+        <br />
 
-      <div class="field">
-        <%= form.label :lost_on, "Lost On" %>
-        <%= form.text_field :lost_on, type: "date" %>
-      </div>
+        <div class="form-row">
+          <div class="form-group col-md-3">
+            <%= form.label :lost_on, "Lost On" %>
+            <%= form.text_field :lost_on, type: "date", class:"form-control" %>
+          </div>
 
-      <div class="field">
-        <%= form.label :last_known_latitude, "Last Known Latitude" %>
-        <%= form.text_field :last_known_latitude %>
-      </div>
+          <div class="form-group col-md-3">
+            <%= form.label :last_known_latitude, "Last Known Latitude" %>
+            <%= form.text_field :last_known_latitude, class: "form-control", placeholder: "Latitude" %>
+          </div>
+          
+          <div class="form-group col-md-3">
+            <%= form.label :last_known_longitude, "Last Known Longitude" %>
+            <%= form.text_field :last_known_longitude, class: "form-control", placeholder: "Longitude" %>
+          </div>
+        
+          <div class="form-group col-md-3">
+            <%= form.label :image %>
+            <%= form.file_field :image, class: "form-control-file" %>
+          </div>
+        </div>
 
-      <div class="field">
-        <%= form.label :last_known_longitude, "Last Known Longitude" %>
-        <%= form.text_field :last_known_longitude %>
-      </div>
+        <br />
 
-      <div class="field">
-        <%= form.label :other_info, "Other Info" %>
-          <br />
-          <%= form.text_area :other_info, cols: "25" , placeholder: "max 30 character" , maxlength: 30 %>
-      </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <%= form.label :description, "Description" %>
+            <%= form.text_area :description, placeholder: "max 100 character" , class:"form-control", maxlength: 100, rows: "3" %>
+          </div>
+          <div class="form-group col-md-6">
+            <%= form.label :other_info, "Other Info" %>
+            <%= form.text_area :other_info, placeholder: "max 30 character" , class:"form-control", maxlength: 30, rows: "3" %>
+          </div>
+        </div>
 
-      <div class="field">
-        <%= form.label :image %>
-          <br />
-          <%= form.file_field :image %>
-      </div>
+        <br />
 
-      <div class="actions">
-        <%= form.submit "Save" , class: "btn btn-default btn-success", style: 'color:black; font-weight: bold' %>
-      </div>
+        <div class="form-row text-center">
+          <div class="form-group col-md-12">
+            <%= form.submit "Save" , class: "btn btn-default btn-success" , style: 'color:black; font-weight: bold; width: 15rem' %>
+          </div>
+        </div>
 
-      <br />
-      <% end %>
+    </form>
+    </div>
+    <hr />
+
+<% end %>
 

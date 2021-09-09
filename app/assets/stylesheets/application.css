@@ -56,7 +56,7 @@ html {
 
 /* nav */
 .navbar {
-  background-color: rgb(168, 201, 240);
+  background-color: rgb(8, 22, 39);
 }
 
 .navbar-nav {
@@ -111,4 +111,34 @@ header {
   height: 40vh;
   justify-content: center;
   display: -webkit-flex;
+}
+
+/* datepicker */
+header img {
+  display: block;
+  margin: 0 auto;
+}
+header span {
+  position: absolute;
+  top: 36%;
+  left: 18%;
+  font-size: 28px;
+  color: #fff;
+}
+.para {
+  margin-left: 13%;
+  width: 75%;
+}
+
+/* .btn-success {
+  margin-left: 42%;
+  margin-top: 2%;
+  cursor: pointer;
+} */
+
+h2 {
+  color: #218838;
+}
+section {
+  margin-top: 20px;
 }
