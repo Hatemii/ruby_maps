@@ -5,5 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates_presence_of :name, :username, :password_confirmation
-  validates_uniqueness_of :username, :email       
+  validates_uniqueness_of :username, :email
+  
+  has_many :pets
 end
