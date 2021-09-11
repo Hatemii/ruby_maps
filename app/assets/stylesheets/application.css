@@ -102,6 +102,12 @@ label {
   flex: 1 1 auto;
 }
 
+/* card top image */
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
 /* home wallpaper */
 header {
   background-image: url("wallpaper.png");

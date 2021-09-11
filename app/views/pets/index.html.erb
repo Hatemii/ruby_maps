@@ -10,13 +10,13 @@
       <div class="card card_on_profile h-100">
        
         <% if !pet.image.blank? %>
-          <%=image_tag(pet.image) %> 
+          <%=image_tag(pet.image, class: "img-fluid") %> 
         <% else %>
           <img class="card-img-top" src="" alt="no image available!">
         <% end %>
        
         <div class="card-body text-center d-flex flex-column">
-          <h5 class="card-title" style="font-weight: bold;">Name</h5>
+          <h5 class="card-title"> <strong><%= pet.name.upcase %></strong></h5>
           <table class="table">
               <tbody>
                 <tr>
