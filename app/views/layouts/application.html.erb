@@ -15,9 +15,7 @@
 
   <body>
     <%= render "nav/navbar" %>
-
-    <p class="notice"> <%= notice %> </p>
-    <p class="alert"> <%= alert %> </p>
+    <%= render "alerts_handle/alerts" %>
 
     <div class="container">
       <%= yield %>
