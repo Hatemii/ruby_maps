@@ -28,7 +28,7 @@ class PetsController < ApplicationController
 
   # POST /pets or /pets.json
   def create
-    if pet_params[:lost_on].to_date > Time.zone.now.to_date
+    if pet_params[:lost_on].to_date < 3.years.ago || pet_params[:lost_on].to_date > Time.zone.now.to_date
       respond_to do |format|
         format.html {redirect_to new_pet_path, alert: "Date #{pet_params[:lost_on].to_date} is not valid!"}
       end
