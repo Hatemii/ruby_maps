@@ -1,19 +1,19 @@
 <div style="width: 30%; margin: auto; margin-top:20px; margin-bottom: -20px;">
   
   <% if flash[:notice] %>
-    <div class="alert alert-success text-center" role="alert">
+    <div class="alert alert-success text-center" role="alert" style="background-color: rgb(133, 243, 82); color:black;">
       <button type='button' class='close' data-dismiss='alert'>&times;</button>
       <%= flash[:notice]%>
     </div>
   
   <% elsif flash[:error] %>
-    <div class="alert alert-danger text-center" role="alert">
+    <div class="alert alert-danger text-center" role="alert" style="background-color: rgb(240, 52, 52); color:black;">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       <%= flash[:error]%>
     </div>
   
   <% elsif flash[:alert] %>
-    <div class="alert text-center" role="alert">
+    <div class="alert alert-alert text-center" role="alert" style="background-color: rgb(243, 213, 77); color:black;">
       <button type=" button" class="close" data-dismiss="alert">&times;</button>
       <%= flash[:alert]%>
     </div>

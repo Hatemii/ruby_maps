@@ -28,16 +28,22 @@ class PetsController < ApplicationController
 
   # POST /pets or /pets.json
   def create
-    @pet = current_user.pets.create(pet_params)
-    @pet.save
-    
-    respond_to do |format|
-      if @pet.save
-        format.html { redirect_to @pet, notice: "Pet was successfully created" }
-        format.json { render :show, status: :created, location: @pet }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @pet.errors, status: :unprocessable_entity }
+    if pet_params[:lost_on].to_date > Time.zone.now.to_date
+      respond_to do |format|
+        format.html {redirect_to new_pet_path, alert: "Date #{pet_params[:lost_on].to_date} is not valid!"}
+      end
+    else
+      @pet = current_user.pets.create(pet_params)
+      @pet.save
+      
+      respond_to do |format|
+        if @pet.save
+          format.html { redirect_to @pet, notice: "Pet was successfully created" }
+          format.json { render :show, status: :created, location: @pet }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @pet.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
