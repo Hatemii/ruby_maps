@@ -85,7 +85,7 @@
 
         <% if user_signed_in? && @pet.user_id==current_user.id %>
           <div class="card-footer text-center">
-              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary", style:"color: black; font-weight: bold" %> |
+              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary", style:"color: white; font-weight: bold" %> |
               <%= link_to 'Delete' , pets_delete_path(@pet), class: "btn btn-danger", style:"color: black; font-weight: bold", method: :delete, onclick: "return confirm('Are you sure?')" %> 
             </div>
         <% end %>
