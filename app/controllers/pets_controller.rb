@@ -50,13 +50,19 @@ class PetsController < ApplicationController
 
   # PATCH/PUT /pets/1 or /pets/1.json
   def update
-    respond_to do |format|
-      if @pet.update(pet_params)
-        format.html { redirect_to @pet, notice: "Pet was successfully updated" }
-        format.json { render :show, status: :ok, location: @pet }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @pet.errors, status: :unprocessable_entity }
+     if pet_params[:lost_on].present? && (pet_params[:lost_on].to_date < 3.years.ago || pet_params[:lost_on].to_date > Time.zone.now.to_date)
+      respond_to do |format|
+        format.html {redirect_to edit_pet_path(@pet), alert: "Date #{pet_params[:lost_on].to_date} is not valid!"}
+      end
+    else
+      respond_to do |format|
+        if @pet.update(pet_params)
+          format.html { redirect_to @pet, notice: "Pet was successfully updated" }
+          format.json { render :show, status: :ok, location: @pet }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: @pet.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -73,10 +79,15 @@ class PetsController < ApplicationController
 
   def remove_image
     @pet = Pet.find(params[:pet_id])
-    @pet.image.delete
-
-    respond_to do |format|
-      format.html {redirect_to @pet, notice: "Image successfully removed"}
+    if @pet.image.present?
+      @pet.image.delete 
+      respond_to do |format|
+        format.html {redirect_to @pet, notice: "Image successfully removed"}
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to edit_pet_path(@pet), alert: "No image available!"}
+      end
     end
   end
 

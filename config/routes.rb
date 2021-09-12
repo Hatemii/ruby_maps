@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   end
   
   resources :pets do
-    delete 'remove_image', to: 'pets#remove_image'
+    delete 'pets/:id/image_remove', to: 'pets#remove_image', as: 'pet_image_remove'
+    get '/pets/:id/image_remove' => 'pets#remove_image'
   end
   delete 'pets/:id/delete' => 'pets#destroy', as: 'pets_delete'
   get '/pets/:id/delete' => 'pets#destroy'
