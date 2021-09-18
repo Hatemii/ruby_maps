@@ -5,9 +5,24 @@
 
 <%= form_with model: @pet, local: true, 
   data: { 
-    controller: "maps",
-    action: "google-maps-callback@window->maps#initMap" 
+    controller: "maps", action: "google-maps-callback@window->maps#initMap"
   }  do |form| %>
+
+  <% if @pet.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(stop.errors.count, "error" ) %> prohibited this stop from being saved:
+      </h2>
+
+      <ul>
+        <% stop.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+  <% end %>
   
   <div class="container">
     <form>
@@ -44,19 +59,19 @@
 
             <div class="form-group col-md-3">
               <%= form.label :search %>
-                <input type="search" class="form-control pac-target-input" placeholder="Search City" data-maps-target="field"
-                  autocomplete="off">
+              <%= form.search_field :search, class: 'form-control' , 
+                placeholder: "Search City", 'data-target' => "maps.field" , action: "keydown->maps#keydown" %>
             </div>
 
 
           <div class="form-group col-md-3">
             <%= form.label :last_known_latitude, "Last Known Latitude" %>
-            <%= form.text_field :latitude, class: "form-control", placeholder: "Latitude", data: { target: "maps.latitude" }  %>
+            <%= form.text_field :latitude, class: 'form-control' , 'data-target' => "maps.latitude" %>
           </div>
           
           <div class="form-group col-md-3">
             <%= form.label :last_known_longitude, "Last Known Longitude" %>
-            <%= form.text_field :longitude, class: "form-control", placeholder: "Longitude", data: { target: "maps.longitude" }  %>
+            <%= form.text_field :longitude, class: 'form-control' , 'data-target' => "maps.longitude" %>
           </div>
         </div>
 
@@ -84,7 +99,7 @@
         <br />
 
         <div>
-          <div data-maps-target="map", class='map', style="position: relative; overflow: hidden"></div>
+          <div data-maps-target="map" , class='map' , style="position: relative; overflow: hidden"></div>
         </div>
 
         <br />
