@@ -2,7 +2,11 @@
 <hr />
 <br />
 
-<%= form_with(model: @pet) do |form| %>
+<%= form_with model: @pet, local: true,
+  data: {
+    controller: "maps", action: "google-maps-callback@window->maps#initMap"
+  } do |form| %>
+    
   <% if @pet && @pet.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -47,32 +51,42 @@
           <br />
       
           <div class="form-row">
+
+            <div class="form-group col-md-3">
+              <%= form.label :search %>
+              <%= form.search_field :search, class: 'form-control' , placeholder: "Search City" , 'data-target'=> "maps.field" %>
+            </div>
+            
+            <div class="form-group col-md-3">
+              <%= form.label :latitude %>
+              <%= form.text_field :latitude, class: "form-control" , 'data-target' => "maps.latitude" %>
+            </div>
+      
+            <div class="form-group col-md-3">
+              <%= form.label :longitude %>
+              <%= form.text_field :longitude, class: "form-control" , 'data-target' => "maps.longitude" %>
+            </div>
+
             <div class="form-group col-md-3">
               <%= form.label :lost_on, "Lost On" %>
-                <span style="font-style:italic; font-size:12px">(date older then 3 years is not valid!)</span>
-                <%= form.text_field :lost_on, type: "date" , class:"form-control" %>
-            </div>
-      
-            <div class="form-group col-md-3">
-              <%= form.label :last_known_latitude, "Last Known Latitude" %>
-              <%= form.text_field :latitude, class: "form-control" , placeholder: "Latitude" %>
-            </div>
-      
-            <div class="form-group col-md-3">
-              <%= form.label :last_known_longitude, "Last Known Longitude" %>
-              <%= form.text_field :longitude, class: "form-control" , placeholder: "Longitude" %>
-            </div>
-      
-            <div class="form-group col-md-3">
-              <%= form.label :image %>
-                <br />
-                <%= form.file_field :image %>
-                  <br />
-                <%= link_to 'Remove Image' , pet_pet_image_remove_path(@pet), method: :delete, onclick: "return confirm('Are you sure?')" %>
+              <span style="font-style:italic; font-size:12px">(date older then 3 years is not valid!)</span>
+              <%= form.text_field :lost_on, type: "date" , class:"form-control" %>
             </div>
           </div>
       
           <br />
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <%= form.label :image %>
+                <br />
+              <%= form.file_field :image %>
+                <br />
+              <%= link_to 'Remove Image' , pet_pet_image_remove_path(@pet), method: :delete,
+              onclick: "return confirm('Are you sure?')" %>
+            </div>
+          </div>
+        
+        <br />
       
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -95,6 +109,16 @@
                 style: 'color:black; font-weight: bold; width: 15rem' %>
             </div>
           </div>
+
+
+          <br />
+          
+          <div>
+            <div data-maps-target="map" , class='map' , style="position: relative; overflow: hidden"></div>
+          </div>
+          
+          <br />
+          <br />
       
         </form>
       </div>
