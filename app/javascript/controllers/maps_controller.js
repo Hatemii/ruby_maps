@@ -20,7 +20,6 @@ export default class extends Controller {
 
   autocomplete_handle() {
     const autocomplete = new google.maps.places.Autocomplete(this.fieldTarget)
-    console.log("this.map: ", this.map)
 
     autocomplete.bindTo('bounds', this.map)
     autocomplete.setFields(['address_components', 'geometry', 'icon', 'name'])
