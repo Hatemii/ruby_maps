@@ -195,9 +195,11 @@ section {
 
 /* Maps */
 .map {
-  width: 100%;
+  width: 95%;
   height: 98vw;
-  max-height: 320px;
+  max-height: 420px;
+  float: right;
+  top: -18px;
 }
 
 * {
