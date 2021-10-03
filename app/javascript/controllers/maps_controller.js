@@ -14,8 +14,16 @@ export default class extends Controller {
       center: new google.maps.LatLng(this.data.get("latitude") || 39.5, this.data.get("longitude") || -98.35),
       zoom: 8
      })
-     
+    
+    this.mouseClickHandle()  
     this.autocomplete_handle()
+  }
+
+  mouseClickHandle() {
+    this.map.addListener('click', event => {
+      this.latitudeTarget.value = event.latLng.lat().toFixed(5)
+      this.longitudeTarget.value = event.latLng.lng().toFixed(5)
+    });
   }
 
   autocomplete_handle() {
