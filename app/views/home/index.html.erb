@@ -11,7 +11,7 @@
   <div class="col-sm-4">
       <div class="card text-white bg-primary mb-3">
         <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">Report</h5>
+          <h5 class="card-title" style="font-weight: bold;">Report <i>(create)</i> </h5>
           <p class="card-text">To report lost and found pets or abused strays, just click on the box below.</p>
           
           <div class="container">
@@ -30,7 +30,8 @@
           <p class="card-text">To browse lost and found pets or abused strays, just click on the box below.</p>
 
           <div class="container">
-            <%= link_to 'All Pets' , pets_path, style: 'color:#000000;'"position:relative; left:80px; top:2px; font-weight:bold;", :class => "btn btn-warning" %>
+            <%= link_to 'Lost Pets' , pets_path, style: 'color:#000000; font-weight:bold;', :class => "btn btn-warning" %>
+            <%= link_to 'Found Pets' , found_pets_path, style: 'color:#000000; float:right; font-weight:bold', :class => "btn btn-secondary" %>
           </div>
         </div>
       </div>
