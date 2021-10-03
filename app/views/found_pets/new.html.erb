@@ -1,0 +1,119 @@
+<h3 class="text-center">Create New Record</h3>
+<hr />
+<br />
+
+
+<%= form_with model: @found_pet, local: true, 
+  data: { 
+    controller: "maps", action: "google-maps-callback@window->maps#initMap"
+  }  do |form| %>
+
+  <% if @found_pet.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(stop.errors.count, "error" ) %> prohibited this stop from being saved:
+      </h2>
+
+      <ul>
+        <% stop.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<div class="row">
+  <div class="column column_1">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <%= form.label :species %>
+          <%= form.select :species, ["Cat", "Dog" , "Bird" , "Hamster" , "Reptiles" , "Others" ], {},
+              class: "form-control" %>
+        </div>
+    
+        <div class="form-group col-md-4">
+          <%= form.label :breed %>
+          <%= form.text_field :breed, class: "form-control" , placeholder:"Breed" %>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <%= form.label :search %>
+          <%= form.search_field :search, class: 'form-control' , placeholder: "Search City" , 'data-target'=> "maps.field" ,
+              action: "keydown->maps#keydown" %>
+        </div>
+      
+        <div class="form-group col-md-4">
+          <%= form.label :latitude %>
+          <%= form.text_field :latitude, class: 'form-control' , 'data-target'=> "maps.latitude" %>
+        </div>
+      
+        <div class="form-group col-md-4">
+          <%= form.label :longitude %>
+          <%= form.text_field :longitude, class: 'form-control' , 'data-target'=> "maps.longitude" %>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= form.label :found_on %>
+          <span style="font-style:italic; font-size:12px">(date older then 3 years is not valid!)</span>
+          <%= form.text_field :found_on, type: "date" , class:"form-control" %>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= form.label :image %>
+          <%= form.file_field :image, class: "form-control-file" %>
+        </div>
+
+        <div class="form-group col-md-6">
+          <%= form.label :injured %> <br />
+          <%= form.check_box :injured %>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <%= form.label :other_info, "Other Info" %>
+          <%= form.text_area :other_info, placeholder: "max 50 character" , class:"form-control", maxlength: 50, rows: "3" %>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="form-row text-left">
+        <div class="form-group col-md-12">
+          <%= form.submit "Save" , class: "btn btn-default btn-success" ,
+            style: 'color:black; font-weight: bold; width: 15rem' %>
+        </div>
+      </div>
+
+    </form>
+  </div>
+
+
+  <div class="column column_2">
+    <form >
+      <div class="form-group">
+        <div data-maps-target="map" , class='map'></div>
+      </div>
+    </form>
+  </div>
+<hr />
+
+
+<% end %>

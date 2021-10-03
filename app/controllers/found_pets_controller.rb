@@ -7,13 +7,13 @@ class FoundPetsController < ApplicationController
   end
 
   def show
-    @found_pet = Pet.find(params[:id])
+    @found_pet = FoundPet.find(params[:id])
     @found_pet.as_json.merge(image: url_for(@found_pet.image)) if !@found_pet.image.blank?
     @found_pet
   end
 
   def new
-    @found_pet = Pet.new
+    @found_pet = FoundPet.new
   end
 
   def edit
@@ -26,12 +26,12 @@ class FoundPetsController < ApplicationController
         format.html {redirect_to new_found_pet_path, alert: "Date #{pet_params[:found_on].to_date} is not valid!"}
       end
     else
-      @found_pet = current_user.pets.create(pet_params)
+      @found_pet = current_user.found_pets.create(pet_params)
       @found_pet.save
       
       respond_to do |format|
         if @found_pet.save
-          format.html { redirect_to @found_pet, notice: "Pet was successfully created" }
+          format.html { redirect_to new_found_pet_path, notice: "Pet was successfully created" }
           format.json { render :show, status: :created, location: @found_pet }
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -86,11 +86,11 @@ class FoundPetsController < ApplicationController
    private
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
-      @pet = Pet.find(params[:id])
+      @found_pet = FoundPet.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def pet_params
-      params.require(:pet).permit(:species, :breed, :found_on, :latitude, :longitude, :image, :other_info, :injured, :search)
+      params.require(:found_pet).permit(:species, :breed, :found_on, :latitude, :longitude, :image, :other_info, :injured, :search)
     end
 end
