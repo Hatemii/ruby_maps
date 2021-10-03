@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   delete 'pets/:id/delete' => 'pets#destroy', as: 'pets_delete'
   get '/pets/:id/delete' => 'pets#destroy'
 
+  resources :found_pets
+
   root "home#index"
   get  'about/index', to:'about#index'
   get  'contact/index', to:'contact#index'
