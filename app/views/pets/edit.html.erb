@@ -53,12 +53,12 @@
               
               <div class="form-group col-md-4">
                 <%= form.label :latitude %>
-                <%= form.text_field :latitude, class: "form-control" , 'data-target'=> "maps.latitude" %>
+                <%= form.text_field :latitude, class: "form-control" , 'data-target'=> "maps.latitude", :readonly => true%>
               </div>
               
               <div class="form-group col-md-4">
                 <%= form.label :longitude %>
-                <%= form.text_field :longitude, class: "form-control" , 'data-target'=> "maps.longitude" %>
+                <%= form.text_field :longitude, class: "form-control" , 'data-target'=> "maps.longitude", :readonly => true %>
               </div>
             </div>
 
