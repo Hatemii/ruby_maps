@@ -5,10 +5,10 @@
   
   <% @pets.each do |pet| %>
     <div class="col-md-4 align-items-stretch" style="margin-bottom: 5%;">
-      <div class="card card_on_profile h-100">
-       
+      <div class="card h-100">
+        
         <% if !pet.image.blank? %>
-          <%=image_tag(pet.image, class: "img-fluid") %> 
+          <%=image_tag(pet.image, class: "card-img-top") %> 
         <% else %>
           <img class="card-img-top" src="" alt="no image available!">
         <% end %>

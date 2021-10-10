@@ -90,11 +90,9 @@ label {
 }
 
 /* card */
-.card_on_profile {
-  padding: 40px 30px;
-  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
-  background: rgb(245, 245, 245);
+.card-img-top {
+  height: 18vw;
+  object-fit: cover;
 }
 
 .card-horizontal {
