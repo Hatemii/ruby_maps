@@ -26,12 +26,12 @@
     <div class="col-sm-4">
       <div class="card text-white bg-primary mb-3">
         <div class="card-body">
-          <h5 class="card-title" style="font-weight: bold;">Browse</h5>
+          <h5 class="card-title" style="font-weight: bold;">Listings</h5>
           <p class="card-text">To browse lost and found pets or abused strays, just click on the box below.</p>
 
-          <div class="container">
-            <%= link_to 'Lost Pets' , pets_path, style: 'color:#000000; font-weight:bold;', :class => "btn btn-warning" %>
-            <%= link_to 'Found Pets' , found_pets_path, style: 'color:#000000; float:right; font-weight:bold', :class => "btn btn-secondary" %>
+          <div class="container text-center">
+            <%= link_to 'All Pets' , pets_path, style: 'color:#000000; font-weight:bold;', :class => "btn btn-warning" %>
+      
           </div>
         </div>
       </div>
@@ -45,7 +45,6 @@
           
           <div class="container">
             <a href="https://www.google.com/maps" target="_blank" class="btn btn-light" style="color: rgb(0, 0, 0);position:relative; left:60px; top:2px; font-weight: bold">Show On Map</a>
-
           </div>
         </div>
       </div>
