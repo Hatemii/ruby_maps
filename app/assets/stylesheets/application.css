@@ -220,3 +220,32 @@ section {
   display: table;
   clear: both;
 }
+
+/* split screen with buttons */
+
+.btn-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.split-button-1 button,
+.split-button-2 button {
+  font-weight: bold;
+  padding: 15px 20px;
+  border-radius: 7px;
+  width: 30%;
+  letter-spacing: 1px;
+  font-size: 18px;
+  border: none;
+}
+
+.split-button-1 button {
+  background-color: rgba(58, 58, 58, 0.856);
+  color: white;
+}
+
+.split-button-2 button {
+  background-color: rgb(201, 201, 201);
+  color: black;
+}
