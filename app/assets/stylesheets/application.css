@@ -140,9 +140,6 @@ header span {
   cursor: pointer;
 } */
 
-h2 {
-  color: #218838;
-}
 section {
   margin-top: 20px;
 }
@@ -232,7 +229,7 @@ section {
 .split-button-1 button,
 .split-button-2 button {
   font-weight: bold;
-  padding: 15px 20px;
+  padding: 10px 15px;
   border-radius: 7px;
   width: 30%;
   letter-spacing: 1px;

@@ -22,6 +22,8 @@
 // require("trix")
 // require("@rails/actiontext")
 
+//= require jquery
+
 import "controllers"
 
 window.initMap = function(...args) {
