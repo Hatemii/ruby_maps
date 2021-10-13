@@ -1,0 +1,118 @@
+<%= form_with model: @found_pet, local: true,
+  data: {
+    controller: "maps", action: "google-maps-callback@window->maps#initMap"
+  } do |form| %>
+    
+  <% if @found_pet && @found_pet.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@found_pet.errors.count, "error" ) %> prohibited this found_pet from being saved:
+      </h2>
+
+      <ul>
+        <% @found_pet.errors.each do |error| %>
+          <li>
+            <%= error.full_message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+      <div class="row">
+        <div class="column column_1">
+          <form>
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <%= form.label :name %>
+                <%= form.text_field :name, class: "form-control" , placeholder:"Name" %>
+              </div>
+          
+              <div class="form-group col-md-4">
+                <%= form.label :species %>
+                <%= form.select :species, ["Cat", "Dog" , "Bird" , "Hamster" , "Reptiles" , "Others" ], {},
+                    class: "form-control" %>
+              </div>
+          
+              <div class="form-group col-md-4">
+                <%= form.label :breed %>
+                <%= form.text_field :breed, class: "form-control" , placeholder:"Breed" %>
+              </div>
+            </div>
+          
+            <br />
+
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <%= form.label :search %>
+                <%= form.search_field :search, class: 'form-control' , placeholder: "Search City" , 'data-target'=> "maps.field" %>
+              </div>
+              
+              <div class="form-group col-md-4">
+                <%= form.label :latitude %>
+                <%= form.text_field :latitude, class: "form-control" , 'data-target'=> "maps.latitude", :readonly => true%>
+              </div>
+              
+              <div class="form-group col-md-4">
+                <%= form.label :longitude %>
+                <%= form.text_field :longitude, class: "form-control" , 'data-target'=> "maps.longitude", :readonly => true %>
+              </div>
+            </div>
+
+            <br />
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <%= form.label :lost_on, "Lost On" %>
+                    <span style="font-style:italic; font-size:12px">(date older then 3 years is not valid!)</span>
+                    <%= form.text_field :lost_on, type: "date" , class:"form-control" %>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <%= form.label :image %>
+                  <br />
+                <%= form.file_field :image %>
+                  <br />
+                <%= link_to 'Remove Image' , pet_pet_image_remove_path(@found_pet), method: :delete,
+                    onclick: "return confirm('Are you sure?')" %>
+              </div>
+
+                <div class="form-group col-md-6">
+                  <%= form.label :injured %> <br />
+                  <%= form.check_box :injured %>
+                </div>
+            </div>
+
+            <br />
+
+            <div class="form-row">
+              <div class="form-group col-md-10">
+                <%= form.label :other_info, "Other Info" %>
+                <%= form.text_area :other_info, placeholder: "max 30 character" , class:"form-control", maxlength: 30, rows: "3"%>
+              </div>
+            </div>
+            
+            <br />
+            
+            <div class="form-row text-center">
+              <div class="form-group col-md-6">
+                <%= form.submit "Save" , class: "btn btn-default btn-success" , style: 'color:black; font-weight: bold; width: 15rem' %>
+              </div>
+            </div>
+          </form>
+        </div>
+
+          <div class="column column_2">
+            <form>
+              <div class="form-group">
+                <div data-maps-target="map" , class='map'></div>
+              </div>
+            </form>
+          </div>
+          
+      </div>
+    <hr />
+  <% end %>

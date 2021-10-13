@@ -1,5 +1,7 @@
 class FoundPet < ApplicationRecord
   belongs_to :user
+  
+  validates_presence_of  :species, :breed, :found_on, :latitude, :longitude, :injured, :search, on: :create
 
   has_one_attached :image
   validates :image, blob: { content_type: :image, size_range: 1..5.megabyte}

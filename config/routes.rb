@@ -13,7 +13,12 @@ Rails.application.routes.draw do
   delete 'pets/:id/delete' => 'pets#destroy', as: 'pets_delete'
   get '/pets/:id/delete' => 'pets#destroy'
 
-  resources :found_pets
+  resources :found_pets do
+    delete 'found_pets/:id/image_remove', to: 'found_pets#remove_image', as: 'pet_image_remove'
+    get '/found_pets/:id/image_remove' => 'found_pets#remove_image'
+  end
+  delete 'found_pets/:id/delete' => 'found_pets#destroy', as: 'found_pets_delete'
+  get '/found_pets/:id/delete' => 'found_pets#destroy'
 
   root "home#index"
   get  'about/index', to:'about#index'

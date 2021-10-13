@@ -5,25 +5,25 @@
         <div class="card-horizontal">
 
           <div class="img-responsive" style="height: fit-content;">
-            <% if !@pet.image.blank? %>
-              <%= image_tag(@pet.image, size: "180x100" ) %>
-            <% else %>
-              <p>No image available!</p>
-            <% end %>
+            <% if !@found_pet.image.blank? %>
+              <%= image_tag(@found_pet.image, size: "180x100" ) %>
+                <% else %>
+                  <p>No image available!</p>
+                  <% end %>
           </div>
 
           <div class="card-body">
-            <h4 class="card-title"> <strong><%= @pet.name.upcase %></strong></h4>
-            
             <div class="row">
               <div class="col-sm-6">
-                <p class="card-text"><strong>Lost on: </strong>
-                <%= @pet.lost_on_format %> </p>
+                <p class="card-text"><strong>Found on: </strong>
+                  <%= @found_pet.found_on_format %>
+                </p>
               </div>
-              
+
               <div class="col-sm-6">
                 <p class="card-text"><strong>City/Country: </strong>
-                <%= @pet.search %></p>
+                  <%= @found_pet.search %>
+                </p>
               </div>
             </div>
 
@@ -32,12 +32,12 @@
             <div class="row">
               <div class="col-sm-6">
                 <p class="card-text"><strong>Species: </strong>
-                  <%= @pet.species %>
+                  <%= @found_pet.species %>
                 </p>
               </div>
               <div class="col-sm-6">
                 <p class="card-text"><strong>Breed: </strong>
-                  <%= @pet.breed %>
+                  <%= @found_pet.breed %>
                 </p>
               </div>
             </div>
@@ -46,21 +46,12 @@
             <div class="row">
               <div class="col-sm-6">
                 <p class="card-text"><strong>Last known latitude: </strong>
-                  <%= @pet.latitude.round(6) %>
+                  <%= @found_pet.latitude.round(6) %>
                 </p>
               </div>
               <div class="col-sm-6">
                 <p class="card-text"><strong>Last known longitude: </strong>
-                  <%= @pet.longitude.round(6) %>
-                </p>
-              </div>
-            </div>
-            <hr />
-            
-            <div class="row">
-              <div class="col-sm-12">
-                <p class="card-text"><strong>Description: </strong>
-                  <%= @pet.description %>
+                  <%= @found_pet.longitude.round(6) %>
                 </p>
               </div>
             </div>
@@ -69,15 +60,15 @@
             <div class="row">
               <div class="col-sm-6">
                 <p class="card-text"><strong>Other Info: </strong>
-                  <%= @pet.other_info %>
+                  <%= @found_pet.other_info %>
                 </p>
               </div>
 
               <div class="col-sm-6">
-                <% if @pet.injured %>
+                <% if @found_pet.injured %>
                   <p class="card-text"><strong>Injured: </strong> Yes</p>
                 <% else %>
-                  <p class="card-text"><strong>Injured: </strong> No</p>
+                    <p class="card-text"><strong>Injured: </strong> No</p>
                 <% end %>
               </div>
             </div>
@@ -85,20 +76,20 @@
         </div>
 
         <div class="card-footer text-center">
-          <small class="text-muted">last update <%= @pet.updated_at.strftime('%a, %d %b %Y %H:%M') %></small>
+          <small class="text-muted">last update <%= @found_pet.updated_at.strftime('%a, %d %b %Y %H:%M') %></small>
         </div>
 
-        <% if user_signed_in? && @pet.user_id==current_user.id %>
+        <% if user_signed_in? && @found_pet.user_id == current_user.id %>
           <div class="card-footer text-center">
-              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary", style:"color: white; font-weight: bold" %> |
-              <%= link_to 'Delete' , pets_delete_path(@pet), class: "btn btn-danger", style:"color: black; font-weight: bold", method: :delete, onclick: "return confirm('Are you sure?')" %> 
-            </div>
-        <% end %>
+            <%= link_to 'Edit' , edit_found_pet_path(@found_pet), class: "btn btn-primary" , style:"color: white; font-weight: bold"
+              %> |
+              <%= link_to 'Delete' , found_pets_delete_path(@found_pet), class: "btn btn-danger" , style:"color: black; font-weight:
+                bold", method: :delete, onclick: "return confirm('Are you sure?')" %>
+          </div>
+          <% end %>
       </div>
     </div>
   </div>
 </div>
 
 <br />
-
-
