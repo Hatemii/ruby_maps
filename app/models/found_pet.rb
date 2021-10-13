@@ -4,7 +4,7 @@ class FoundPet < ApplicationRecord
   has_one_attached :image
   validates :image, blob: { content_type: :image, size_range: 1..5.megabyte}
 
-  def lost_on_format
+  def found_on_format
     self.found_on.strftime('%a, %d %b %Y') if self.found_on.present?
   end
 

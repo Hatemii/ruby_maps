@@ -1,1 +1,52 @@
-<h1>FoundPets#index</h1>
+<% @found_pets = FoundPet %>
+
+<div class="container-fluid content-row">
+  <h5> Total Found Pets - <%= @found_pets.count %> </h5>
+  <br />
+
+  <div class="row" style="margin-bottom: 100px;">
+    <% @found_pets.all.each do |pet| %>
+      <div class="col-md-4 align-items-stretch" style="margin-bottom: 5%;">
+        <div class="card h-100">
+  
+          <% if !pet.image.blank? %>
+            <%=image_tag(pet.image, class: "card-img-top" ) %>
+              <% else %>
+                <img class="card-img-top" src="" alt="no image available!">
+                <% end %>
+  
+                  <div class="card-body text-center d-flex flex-column">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>Species</td>
+                          <td>
+                            <%= pet.species.capitalize %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Breed</td>
+                          <td>
+                            <%= pet.breed.capitalize %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Lost on</td>
+                          <td>
+                            <%= pet.found_on_format %>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+  
+                    <%= link_to 'Read More' , pet, class: "mt-auto btn btn-primary" ,
+                      style: "color: white; font-weight: bold" %>
+                  </div>
+                  <div class="card-footer text-muted text-center">
+                    posted - <%= pet.created_at.strftime('%a, %d %b %Y') %>
+                  </div>
+        </div>
+      </div>
+      <% end %>
+  </div>
+  </div>

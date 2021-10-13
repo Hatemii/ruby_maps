@@ -1,0 +1,39 @@
+<div class="btn-group">
+  <div class="col split-button-1 text-right">
+    <button id="lost_pet_handle">Lost Pets</button>
+  </div>
+
+  <span style="border-left: 2px solid rgb(75, 75, 75);"></span>
+
+  <div class="col split-button-2 text-left">
+    <button id="found_pet_handle">Found Pets</button>
+  </div>
+</div>
+
+<hr />
+
+<div class="lost_div">
+  <%= render template: "pets/index.html" %>
+</div>
+
+<div class="found_div">
+  <%= render template: "found_pets/index.html" %>
+</div>
+
+
+<!-- jQuery toggle buttons handle -->
+<script>
+  $(document).ready(function () {
+    $("#lost_pet_handle").click(function () {
+      $(".found_div").hide();
+      $(".lost_div").show();
+    });
+  });
+
+  $(document).ready(function () {
+    $("#found_pet_handle").click(function () {
+      $(".lost_div").hide();
+      $(".found_div").show();
+    });
+  });
+</script>

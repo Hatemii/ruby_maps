@@ -1,6 +1,6 @@
 class FoundPetsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
-  before_action :set_pet, only: [:edit, :update]
+  before_action :set_found_pet, only: [:edit, :update]
 
   def index
     @found_pets = FoundPet.all.order("created_at DESC")
@@ -85,7 +85,7 @@ class FoundPetsController < ApplicationController
 
    private
     # Use callbacks to share common setup or constraints between actions.
-    def set_pet
+    def set_found_pet
       @found_pet = FoundPet.find(params[:id])
     end
 

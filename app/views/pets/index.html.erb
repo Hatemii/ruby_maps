@@ -1,42 +1,55 @@
+<% @pets = Pet %>
 
-<div class="btn-group">
-  <div class="col split-button-1 text-right">
-    <button id="lost_pet_handle">Lost Pets</button>
+<div class="container-fluid content-row">
+  <h5> Total Lost Pets - <%= @pets.count%> </h5>
+  <br />
+
+  <div class="row" style="margin-bottom: 100px;">
+    <% @pets.all.each do |pet| %>
+      <div class="col-md-4 align-items-stretch" style="margin-bottom: 5%;">
+        <div class="card h-100">
+
+          <% if !pet.image.blank? %>
+            <%=image_tag(pet.image, class: "card-img-top" ) %>
+              <% else %>
+                <img class="card-img-top" src="" alt="no image available!">
+                <% end %>
+
+                  <div class="card-body text-center d-flex flex-column">
+                    <h5 class="card-title"> <strong>
+                        <%= pet.name.upcase %>
+                      </strong></h5>
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <td>Species</td>
+                          <td>
+                            <%= pet.species.capitalize %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Breed</td>
+                          <td>
+                            <%= pet.breed.capitalize %>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Lost on</td>
+                          <td>
+                            <%= pet.lost_on_format %>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                    <%= link_to 'Read More' , pet, class: "mt-auto btn btn-primary" ,
+                      style: "color: white; font-weight: bold" %>
+                  </div>
+                  <div class="card-footer text-muted text-center">
+                    posted - <%= pet.created_at.strftime('%a, %d %b %Y') %>
+                  </div>
+        </div>
+      </div>
+      <% end %>
   </div>
-  
-  <span style="border-left: 2px solid rgb(75, 75, 75);"></span>
-  
-  <div class="col split-button-2 text-left">
-    <button id="found_pet_handle">Found Pets</button>
-  </div>
 </div>
-
-<hr />
-
-<div class="lost_div">
-  <%= render "pets/pets_query/lost_pets" %>
-</div>
-
-<div class="found_div">
-  <%= render "pets/pets_query/found_pets" %>
-</div>
-
-
-<!-- jQuery toggle buttons handle -->
-<script>
-  $(document).ready(function () {
-    $("#lost_pet_handle").click(function () {
-      $(".found_div").hide();
-      $(".lost_div").show();
-    });
-  });
-
-  $(document).ready(function () {
-    $("#found_pet_handle").click(function () {
-      $(".lost_div").hide();
-      $(".found_div").show();
-    });
-  });
-</script>
-
-
