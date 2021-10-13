@@ -31,7 +31,7 @@ class FoundPetsController < ApplicationController
       
       respond_to do |format|
         if @found_pet.save
-          format.html { redirect_to new_found_pet_path, notice: "Pet was successfully created" }
+          format.html { redirect_to pets_toggle_index_path, notice: "Pet was successfully created" }
           format.json { render :show, status: :created, location: @found_pet }
         else
           format.html { render :new, status: :unprocessable_entity }
