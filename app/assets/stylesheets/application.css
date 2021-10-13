@@ -23,6 +23,10 @@ html {
   font-family: "Libre Baskerville";
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 .table {
   text-align: center;
   font-family: Arial;
