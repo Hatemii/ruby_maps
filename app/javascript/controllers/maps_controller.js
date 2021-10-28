@@ -12,9 +12,10 @@ export default class extends Controller {
   initMap() {
     this.map = new google.maps.Map(this.mapTarget, {
       center: new google.maps.LatLng(this.data.get("latitude") || 39.5, this.data.get("longitude") || -98.35),
-      zoom: 8
+      zoom: 5,
+      minZoom:8
     })
-    
+
     this.mouseClickHandle()
     this.autocomplete_handle()
   }
