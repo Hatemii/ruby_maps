@@ -5,7 +5,7 @@
   <br />
 
   <div class="row" style="margin-bottom: 100px;">
-    <% @pets.all.each do |pet| %>
+    <% @pets.all.order("ID DESC").each do |pet| %>
       <div class="col-md-4 align-items-stretch" style="margin-bottom: 5%;">
         <div class="card h-100">
 
