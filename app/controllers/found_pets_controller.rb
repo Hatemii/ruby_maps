@@ -21,21 +21,23 @@ class FoundPetsController < ApplicationController
   end
 
   def create
-    if pet_params[:found_on].to_date < 3.years.ago || pet_params[:found_on].to_date > Time.zone.now.to_date
-      respond_to do |format|
-        format.html {redirect_to new_found_pet_path, alert: "Date #{pet_params[:found_on].to_date} is not valid!"}
-      end
-    else
-      @found_pet = current_user.found_pets.create(pet_params)
-      @found_pet.save
-      
-      respond_to do |format|
-        if @found_pet.save
-          format.html { redirect_to pets_toggle_index_path, notice: "Pet was successfully created" }
-          format.json { render :show, status: :created, location: @found_pet }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @found_pet.errors, status: :unprocessable_entity }
+    if params[:form_on_submit]
+      if pet_params[:found_on].to_date < 3.years.ago || pet_params[:found_on].to_date > Time.zone.now.to_date
+        respond_to do |format|
+          format.html {redirect_to new_found_pet_path, alert: "Date #{pet_params[:found_on].to_date} is not valid!"}
+        end
+      else
+        @found_pet = current_user.found_pets.create(pet_params)
+        @found_pet.save
+        
+        respond_to do |format|
+          if @found_pet.save
+            format.html { redirect_to pets_toggle_index_path, notice: "Pet was successfully created" }
+            format.json { render :show, status: :created, location: @found_pet }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @found_pet.errors, status: :unprocessable_entity }
+          end
         end
       end
     end
