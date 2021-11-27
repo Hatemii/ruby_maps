@@ -29,9 +29,11 @@ class FoundPetsController < ApplicationController
       else
         @found_pet = current_user.found_pets.create(pet_params)
         @found_pet.save
-        
+
         respond_to do |format|
           if @found_pet.save
+            @found_pet.record_details.create!(location_params)
+
             format.html { redirect_to pets_toggle_index_path, notice: "Pet was successfully created" }
             format.json { render :show, status: :created, location: @found_pet }
           else
@@ -94,5 +96,9 @@ class FoundPetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def pet_params
       params.require(:found_pet).permit(:species, :breed, :found_on, :latitude, :longitude, :image, :other_info, :injured, :search)
+    end
+
+    def location_params
+      params.require(:found_pet).permit(:route, :street_number, :neighborhood, :postal_code, :localicy, :country)
     end
 end
