@@ -1,8 +1,19 @@
 import { Controller } from "stimulus"
 
 export default class extends Controller {
-  static targets = ["field", "map", "latitude", "longitude"]
-
+  static targets = [
+    "field",
+    "map",
+    "latitude",
+    "longitude",
+    "postal_code",
+    "route",
+    "street_number",
+    "neighborhood",
+    "locality",
+    "country",
+    "postal_code"
+  ]
   connect() {
     if (typeof (google) != "undefined") {
       this.initMap()
@@ -19,20 +30,54 @@ export default class extends Controller {
     this.autocomplete_handle()
   }
 
-  autocomplete_handle() {
+  places() {
     const autocomplete = new google.maps.places.Autocomplete(this.fieldTarget)
-
     autocomplete.bindTo('bounds', this.map)
-    autocomplete.setFields(['address_components', 'geometry', 'icon', 'name'])
+    autocomplete.setFields(['place_id', 'address_components', 'geometry', 'icon', 'name'])
 
-    const marker = new google.maps.Marker({
-      map: this.map,
-      anchorPoint: new google.maps.Point(0, -29),
-      animation: google.maps.Animation.DROP
-    });
+    return autocomplete
+  }
 
+  autocomplete_handle() {
+    var autocomplete = this.places()
+    
     autocomplete.addListener('place_changed', () => {
       const place = autocomplete.getPlace()
+
+      const marker = new google.maps.Marker({
+        map: this.map,
+        anchorPoint: new google.maps.Point(0, -29),
+        animation: google.maps.Animation.DROP,
+        title: place.name,
+        icon: place.icon
+      });
+
+      var addressComponents = place.address_components
+      for (var i = 0; i < addressComponents.length; i++){
+        switch(addressComponents[i].types[0]) {
+          case "route":
+            this.routeTarget.value = addressComponents[i].long_name
+            break;
+          case "street_number":
+            this.street_numberTarget.value = addressComponents[i].long_name
+            break;
+          case "neighborhood":
+            this.neighborhoodTarget.value = addressComponents[i].long_name
+            break;
+          case "locality":
+            this.localityTarget.value = addressComponents[i].long_name
+            break;
+          case "country":
+            this.countryTarget.value = addressComponents[i].long_name
+            break;
+          case "postal_code":
+            this.postal_codeTarget.value = addressComponents[i].long_name
+            break;
+          default:
+            null
+        }
+      }
+
       marker.setVisible(false)
 
       if (!place.geometry) {
@@ -56,7 +101,6 @@ export default class extends Controller {
 
       this.mouseClickHandle(this.latitudeTarget.value, this.longitudeTarget.value)
     })
-
   }
 
   mouseClickHandle(search_lat, search_lng) {
