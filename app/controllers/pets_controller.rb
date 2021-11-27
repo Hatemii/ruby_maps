@@ -28,21 +28,25 @@ class PetsController < ApplicationController
 
   # POST /pets or /pets.json
   def create
-    if pet_params[:lost_on].to_date < 3.years.ago || pet_params[:lost_on].to_date > Time.zone.now.to_date
-      respond_to do |format|
-        format.html {redirect_to new_pet_path, alert: "Date #{pet_params[:lost_on].to_date} is not valid!"}
-      end
-    else
-      @pet = current_user.pets.create(pet_params)
-      @pet.save
-      
-      respond_to do |format|
-        if @pet.save
-          format.html { redirect_to pets_toggle_index_path, notice: "Pet was successfully created" }
-          format.json { render :show, status: :created, location: @pet }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @pet.errors, status: :unprocessable_entity }
+    if params[:form_on_submit]
+      if pet_params[:lost_on].to_date < 3.years.ago || pet_params[:lost_on].to_date > Time.zone.now.to_date
+        respond_to do |format|
+          format.html {redirect_to new_pet_path, alert: "Date #{pet_params[:lost_on].to_date} is not valid!"}
+        end
+      else
+        @pet = current_user.pets.create(pet_params)
+        @pet.save
+        
+        respond_to do |format|
+          if @pet.save
+            @pet.record_details.create!(location_params)
+
+            format.html { redirect_to pets_toggle_index_path, notice: "Pet was successfully created" }
+            format.json { render :show, status: :created, location: @pet }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: @pet.errors, status: :unprocessable_entity }
+          end
         end
       end
     end
@@ -100,5 +104,9 @@ class PetsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def pet_params
       params.require(:pet).permit(:name, :description, :species, :breed, :lost_on, :latitude, :longitude,:image, :other_info, :injured, :search)
+    end
+
+    def location_params
+      params.require(:pet).permit(:route, :street_number, :neighborhood, :postal_code, :localicy, :country)
     end
 end
