@@ -136,15 +136,8 @@
         </div>
       </div>
 
-      <script>
-        $(document).ready(function () {
-          +
-          $(".hide").click(function () {
-            $(".location_details_hidden").toggle(900);
-          });
-        });
-      </script>
-
+      <%= render "jquery_toggles/location_details_toggle" %>
+      
       <br />
       <br />
       <div class="form-row">
