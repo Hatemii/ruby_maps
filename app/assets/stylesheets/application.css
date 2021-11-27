@@ -303,5 +303,7 @@ section {
   color: #363636;
 }
 
-.comments-box {
+.location_details_hidden {
+  display: none;
+  margin-top: 20px;
 }
