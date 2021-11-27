@@ -1,6 +1,7 @@
 class Pet < ApplicationRecord
   has_one_attached :image
   has_many :comments, as: :commentable
+  has_many :record_details, as: :record_detailable
 
   validates :image, blob: { content_type: :image, size_range: 1..5.megabyte}
 

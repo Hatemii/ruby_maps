@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  street_number: 1
+  route: MyString
+  neighborhood: MyString
+  locality: MyString
+  country: MyString
+  postal_code: 1
+  record_detailable: one
+  record_detailable_type: Record detailable
+
+two:
+  street_number: 1
+  route: MyString
+  neighborhood: MyString
+  locality: MyString
+  country: MyString
+  postal_code: 1
+  record_detailable: two
+  record_detailable_type: Record detailable
