@@ -1,6 +1,7 @@
 class FoundPet < ApplicationRecord
   belongs_to :user
   has_many :comments, as: :commentable
+  has_many :record_details, as: :record_detailable
   
   validates_presence_of  :species, :breed, :found_on, :latitude, :longitude, :injured, :search, on: :create
 
