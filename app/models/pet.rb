@@ -35,4 +35,8 @@ class Pet < ApplicationRecord
       io: File.open( Rails.root.join('app', 'assets', 'images', 'no_image.jpg')), filename: 'no_image.jpg') if !self.image.attached?  
   end
 
+  def find_record_details
+    self.record_details[0]
+  end
+
 end
