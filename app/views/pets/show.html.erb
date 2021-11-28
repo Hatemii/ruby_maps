@@ -1,17 +1,18 @@
 <div class="container-fluid">
+
   <div class="row">
-    <div class="col-12 mt-3">
-      <div class="card">
-        <div class="card-horizontal">
+    
+    <div class="col-6 mt-3">
+        <% if !@pet.image.blank? %>
+          <%= image_tag(@pet.image, size: "480x300" ) %>
+        <% else %>
+          <p>No image available!</p>
+        <% end %>
+    </div>
+    
 
-          <div class="img-responsive" style="height: fit-content;">
-            <% if !@pet.image.blank? %>
-              <%= image_tag(@pet.image, size: "180x100" ) %>
-            <% else %>
-              <p>No image available!</p>
-            <% end %>
-          </div>
-
+    <div class="col-6 mt-3">
+        <div class="card border-0">
           <div class="card-body">
             <h4 class="card-title"> <strong><%= @pet.name.upcase %></strong></h4>
             
@@ -22,8 +23,11 @@
               </div>
               
               <div class="col-sm-6">
-                <p class="card-text"><strong>City/Country: </strong>
-                <%= @pet.search %></p>
+                <% if @pet.injured %>
+                  <p class="card-text"><strong>Injured: </strong> Yes</p>
+                <% else %>
+                  <p class="card-text"><strong>Injured: </strong> No</p>
+                <% end %>
               </div>
             </div>
 
@@ -41,8 +45,53 @@
                 </p>
               </div>
             </div>
+
             <hr />
-          
+            
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Location: </strong>
+                  <%= @pet.find_record_details.locality %>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Country: </strong>
+                  <%= @pet.find_record_details.country %>
+                </p>
+              </div>
+            </div>
+
+            <hr />
+            
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Route: </strong>
+                  <%= @pet.find_record_details.route %>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Street Number: </strong>
+                  <%= @pet.find_record_details.street_number %>
+                </p>
+              </div>
+            </div>
+
+            <hr />
+            
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Neighborhood </strong>
+                  <%= @pet.find_record_details.neighborhood %>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Postal Code: </strong>
+                  <%= @pet.find_record_details.postal_code %>
+                </p>
+              </div>
+            </div>
+            
+            <hr />
             
             <div class="row">
               <div class="col-sm-12">
@@ -51,6 +100,7 @@
                 </p>
               </div>
             </div>
+            
             <hr />
 
             <div class="row">
@@ -59,58 +109,22 @@
                   <%= @pet.other_info %>
                 </p>
               </div>
-
-              <div class="col-sm-6">
-                <% if @pet.injured %>
-                  <p class="card-text"><strong>Injured: </strong> Yes</p>
-                <% else %>
-                  <p class="card-text"><strong>Injured: </strong> No</p>
-                <% end %>
-              </div>
             </div>
-          </div>
-        </div>
 
         <div class="card-footer text-center">
           <small class="text-muted">last update <%= @pet.updated_at.strftime('%a, %d %b %Y %H:%M') %></small>
         </div>
 
         <% if user_signed_in? && @pet.user_id==current_user.id %>
-          <div class="card-footer text-center">
-              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary", style:"color: white; font-weight: bold" %> |
-              <%= link_to 'Delete' , pets_delete_path(@pet), class: "btn btn-danger", style:"color: black; font-weight: bold", method: :delete, onclick: "return confirm('Are you sure?')" %> 
+          <div class="footer-buttons text-right">
+              <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary btn-sm", style:"color: white; font-weight: bold" %> |
+              <%= link_to 'Delete' , pets_delete_path(@pet), class: "btn btn-danger btn-sm", style:"color: black; font-weight: bold", method: :delete, onclick: "return confirm('Are you sure?')" %> 
             </div>
         <% end %>
       </div>
+       <%= render "comments/comment_handle" %>
 
-      <br />
-      <br />
-      
-      <h6><strong>2 Comments</strong></h6>
-      <hr />
-      
-      <div class="col-sm-6 comments-box">
-        <p><strong>Username</strong>
-          <small class="text-muted" style="margin-left: 5px">Sun, 31 Oct 2021 19:46</small>
-        </p>
-        <div class="dialogbox">
-          <span class="tip tip-up"></span>
-          <div class="message">
-            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-          </div>
-        </div>
-        <br />
-        <p><strong>Username</strong>
-          <small class="text-muted" style="margin-left: 5px;">Fri, 29 Oct 2021 15:30</small>
-        </p>
-        <div class="dialogbox">
-          <span class="tip tip-up"></span>
-          <div class="message">
-            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-          </div>
-        </div>
       </div>
-
     </div>
   </div>
 </div>
