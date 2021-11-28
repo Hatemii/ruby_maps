@@ -19,11 +19,13 @@
                   <%= @found_pet.found_on_format %>
                 </p>
               </div>
-
+            
               <div class="col-sm-6">
-                <p class="card-text"><strong>City/Country: </strong>
-                  <%= @found_pet.search %>
-                </p>
+                <% if @found_pet.injured %>
+                  <p class="card-text"><strong>Injured: </strong> Yes</p>
+                <% else %>
+                  <p class="card-text"><strong>Injured: </strong> No</p>
+                <% end %>
               </div>
             </div>
 
@@ -42,19 +44,50 @@
               </div>
             </div>
             <hr />
-
+            
             <div class="row">
               <div class="col-sm-6">
-                <p class="card-text"><strong>Last known latitude: </strong>
-                  <%= @found_pet.latitude.round(6) %>
+                <p class="card-text"><strong>Location: </strong>
+                  <%= @found_pet.find_location_details.locality %>
                 </p>
               </div>
               <div class="col-sm-6">
-                <p class="card-text"><strong>Last known longitude: </strong>
-                  <%= @found_pet.longitude.round(6) %>
+                <p class="card-text"><strong>Country: </strong>
+                  <%= @found_pet.find_location_details.country %>
                 </p>
               </div>
             </div>
+            
+            <hr />
+            
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Route: </strong>
+                  <%= @found_pet.find_location_details.route %>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Street Number: </strong>
+                  <%= @found_pet.find_location_details.street_number %>
+                </p>
+              </div>
+            </div>
+            
+            <hr />
+            
+            <div class="row">
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Neighborhood </strong>
+                  <%= @found_pet.find_location_details.neighborhood %>
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <p class="card-text"><strong>Postal Code: </strong>
+                  <%= @found_pet.find_location_details.postal_code %>
+                </p>
+              </div>
+            </div>
+            
             <hr />
 
             <div class="row">
@@ -62,14 +95,6 @@
                 <p class="card-text"><strong>Other Info: </strong>
                   <%= @found_pet.other_info %>
                 </p>
-              </div>
-
-              <div class="col-sm-6">
-                <% if @found_pet.injured %>
-                  <p class="card-text"><strong>Injured: </strong> Yes</p>
-                <% else %>
-                    <p class="card-text"><strong>Injured: </strong> No</p>
-                <% end %>
               </div>
             </div>
           </div>
@@ -88,33 +113,11 @@
           </div>
         <% end %>
       </div>
-      <br />
-      <br />
 
-      <h6><strong>2 Comments</strong></h6>
-      <hr />
-
-      <div class="col-sm-6 comments-box">
-        <p><strong>Username</strong>
-          <small class="text-muted" style="margin-left: 5px">Sun, 31 Oct 2021 19:46</small>
-        </p>
-        <div class="dialogbox">
-          <span class="tip tip-up"></span>
-          <div class="message">
-            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-          </div>
-        </div>
       <br />
-        <p><strong>Username</strong>
-          <small class="text-muted" style="margin-left: 5px;">Fri, 29 Oct 2021 15:30</small>
-        </p>
-        <div class="dialogbox">
-          <span class="tip tip-up"></span>
-          <div class="message">
-            <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
-          </div>
-        </div>
-      </div>
+      <br />
+      
+      <%= render "comments/comment_handle" %>
 
     </div>
   </div>

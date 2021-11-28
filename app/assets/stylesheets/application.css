@@ -94,21 +94,8 @@ label {
   font-weight: bold;
 }
 
-/* card */
-.card-img-top {
-  height: 18vw;
-  object-fit: cover;
-}
-
-.card-horizontal {
-  display: flex;
-  flex: 1 1 auto;
-}
-
-/* card top image */
-.img-fluid {
-  max-width: 100%;
-  height: auto;
+.footer-buttons {
+  margin-top: 10px;
 }
 
 /* home wallpaper */
