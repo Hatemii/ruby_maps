@@ -3,7 +3,7 @@ class FoundPet < ApplicationRecord
   has_many :comments, as: :commentable
   has_many :record_details, as: :record_detailable
   
-  validates_presence_of  :species, :breed, :found_on, :latitude, :longitude, :injured, :search, on: :create
+  validates_presence_of  :species, :breed, :found_on, :latitude, :longitude, :search, :other_info, on: :create
 
   has_one_attached :image
   validates :image, blob: { content_type: :image, size_range: 1..5.megabyte}

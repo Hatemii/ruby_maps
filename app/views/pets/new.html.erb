@@ -30,18 +30,18 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <%= form.label :name %>
-          <%= form.text_field :name, class: "form-control" , placeholder:"Name" %>
+          <%= form.text_field :name, class: "form-control" , placeholder:"Name", :required => 'required' %>
         </div>
     
         <div class="form-group col-md-4">
           <%= form.label :species %>
           <%= form.select :species, ["Cat", "Dog" , "Bird" , "Hamster" , "Reptiles" , "Others" ], {},
-              class: "form-control" %>
+              class: "form-control", :required => 'required' %>
         </div>
     
         <div class="form-group col-md-4">
           <%= form.label :breed %>
-          <%= form.text_field :breed, class: "form-control" , placeholder:"Breed" %>
+          <%= form.text_field :breed, class: "form-control" , placeholder:"Breed", :required => 'required' %>
         </div>
       </div>
 
@@ -50,7 +50,7 @@
       <div class="form-row">
         <div class="form-group col-md-4">
           <%= form.label :search %>
-          <%= form.search_field :search, class: 'form-control' , placeholder: "Search City" , 'data-target'=> "maps.field" %>
+          <%= form.search_field :search, class: 'form-control' , placeholder: "Search City" , 'data-target'=> "maps.field", :required => 'required' %>
         </div>
       
         <div class="form-group col-md-4">
@@ -70,7 +70,7 @@
         <div class="form-group col-md-6">
           <%= form.label :lost_on, "Lost On" %>
           <span style="font-style:italic; font-size:12px">(date older then 3 years is not valid!)</span>
-          <%= form.text_field :lost_on, type: "date" , class:"form-control" %>
+          <%= form.text_field :lost_on, type: "date" , class:"form-control", :required => 'required' %>
         </div>
       </div>
 
@@ -143,7 +143,7 @@
       <div class="form-row">
         <div class="form-group col-md-6">
           <%= form.label :description, "Description" %>
-          <%= form.text_area :description, placeholder: "max 100 character" , class:"form-control", maxlength: 100, rows: "3"%>
+          <%= form.text_area :description, placeholder: "max 100 character" , class:"form-control", maxlength: 100, rows: "3", :required => 'required' %>
         </div>
         <div class="form-group col-md-6">
           <%= form.label :other_info, "Other Info" %>
