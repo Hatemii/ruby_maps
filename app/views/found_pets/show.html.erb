@@ -1,17 +1,26 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12 mt-3">
-      <div class="card">
-        <div class="card-horizontal">
 
-          <div class="img-responsive" style="height: fit-content;">
-            <% if !@found_pet.image.blank? %>
-              <%= image_tag(@found_pet.image, size: "180x100" ) %>
-                <% else %>
-                  <p>No image available!</p>
-                  <% end %>
-          </div>
+    <div class="col-sm-6">
+      <div class="row">
+        <div class="col-sm-12">
+          <% if !@found_pet.image.blank? %>
+            <%= image_tag(@found_pet.image, style: 'height:auto;width:100%;' ) %>
+          <% else %>
+            <p>No image available!</p>
+          <% end %>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-sm-12">
+          <%= render "comments/comment_handle" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-6">
+      <div class="card border-0">
           <div class="card-body">
             <div class="row">
               <div class="col-sm-6">
@@ -97,8 +106,6 @@
                 </p>
               </div>
             </div>
-          </div>
-        </div>
 
         <div class="card-footer text-center">
           <small class="text-muted">last update <%= @found_pet.updated_at.strftime('%a, %d %b %Y %H:%M') %></small>
@@ -106,19 +113,14 @@
 
         <% if user_signed_in? && @found_pet.user_id == current_user.id %>
           <div class="card-footer text-center">
-            <%= link_to 'Edit' , edit_found_pet_path(@found_pet), class: "btn btn-primary" , style:"color: white; font-weight: bold"
+            <%= link_to 'Edit' , edit_found_pet_path(@found_pet), class: "btn btn-primary btn-sm" , style:"color: white; font-weight: bold"
               %> |
-              <%= link_to 'Delete' , found_pets_delete_path(@found_pet), class: "btn btn-danger" , style:"color: black; font-weight:
-                bold", method: :delete, onclick: "return confirm('Are you sure?')" %>
+            <%= link_to 'Delete' , found_pets_delete_path(@found_pet), class: "btn btn-danger btn-sm" , style:"color: black; font-weight:
+              bold", method: :delete, onclick: "return confirm('Are you sure?')" %>
           </div>
         <% end %>
       </div>
-
-      <br />
-      <br />
-      
-      <%= render "comments/comment_handle" %>
-
+      </div>
     </div>
   </div>
 </div>

@@ -3,11 +3,23 @@
   <div class="row">
     
     <div class="col-6 mt-3">
-        <% if !@pet.image.blank? %>
-          <%= image_tag(@pet.image, size: "480x300" ) %>
-        <% else %>
-          <p>No image available!</p>
-        <% end %>
+      <div class="row">
+        <div class="col-sm-12">
+          <% if !@pet.image.blank? %>
+            <%= image_tag(@pet.image, style: 'height:auto;width:100%;' ) %>
+          <% else %>
+            <p>No image available!</p>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-sm-12">
+          <%= render "comments/comment_handle" %>
+        </div>
+      </div>
+
     </div>
     
 
@@ -116,14 +128,12 @@
         </div>
 
         <% if user_signed_in? && @pet.user_id==current_user.id %>
-          <div class="footer-buttons text-right">
+          <div class="card-footer text-center">
               <%= link_to 'Edit' , edit_pet_path(@pet), class: "btn btn-primary btn-sm", style:"color: white; font-weight: bold" %> |
               <%= link_to 'Delete' , pets_delete_path(@pet), class: "btn btn-danger btn-sm", style:"color: black; font-weight: bold", method: :delete, onclick: "return confirm('Are you sure?')" %> 
             </div>
         <% end %>
       </div>
-       <%= render "comments/comment_handle" %>
-
       </div>
     </div>
   </div>
