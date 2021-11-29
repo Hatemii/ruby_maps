@@ -6,7 +6,7 @@ class CreateRecordDetails < ActiveRecord::Migration[6.1]
       t.string :neighborhood, :default =>  "not-available"
       t.string :locality, :default =>  "not-available"
       t.string :country, :default =>  "not-available"
-      t.integer :postal_code
+      t.string :postal_code, :default =>  "not-available"
       t.references :record_detailable, polymorphic: true, null: false
 
       t.timestamps
