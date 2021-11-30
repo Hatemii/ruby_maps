@@ -116,15 +116,17 @@
             <hr />
 
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-sm-12">
                 <p class="card-text"><strong>Other Info: </strong>
                   <%= @pet.other_info %>
                 </p>
               </div>
             </div>
 
-        <div class="card-footer text-center">
-          <small class="text-muted">last update <%= @pet.updated_at.strftime('%a, %d %b %Y %H:%M') %></small>
+        <br>
+
+        <div class="card-footer text-muted text-center">
+          last update <%= @pet.updated_at.strftime('%a, %d %b %Y %H:%M') %>
         </div>
 
         <% if user_signed_in? && @pet.user_id==current_user.id %>
