@@ -14,10 +14,12 @@
  *= require_self
  */
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@500&family=Rubik&display=swap");
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
 html {
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
   margin: auto;
 }
@@ -63,7 +65,7 @@ html {
 }
 
 .navbar-nav {
-  font-family: sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 15px;
   letter-spacing: 0.8px;
   font-weight: bold;
@@ -141,50 +143,6 @@ section {
   height: 15vw;
   object-fit: cover;
 }
-
-/* alerts */
-
-/* .alert {
-  background-color: #125222;
-  border-color: #000000;
-  color: #a30300;
-  text-align: center;
-} */
-
-/* .alert-error {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #b94a48;
-  text-align: center;
-}
-
-.alert-alert {
-  background-color: #f2dede;
-  border-color: #eed3d7;
-  color: #b94a48;
-  text-align: center;
-}
-
-.alert-success {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #468847;
-  text-align: center;
-}
-
-.alert-notice {
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
-  color: #468847;
-  text-align: center;
-}
-
-.alert-danger {
-  background-color: #d83a47;
-  border-color: #e23f5a;
-  color: #000000;
-  text-align: center;
-} */
 
 /* Maps */
 .map {
