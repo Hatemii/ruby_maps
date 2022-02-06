@@ -34,13 +34,12 @@ class PetsController < ApplicationController
           format.html {redirect_to new_pet_path, alert: "Date #{pet_params[:lost_on].to_date} is not valid!"}
         end
       else
-        @pet = current_user.pets.create(pet_params)
-        @pet.save
-        
-        respond_to do |format|
-          if @pet.save
-            @pet.record_details.create!(location_params)
+        @pet = Pets::PetCreateService.call(current_user, data)
 
+        respond_to do |format|
+          if @pet.save!
+            RecordDetails::RecordDetailService.call(@pet, record_detail_data)
+            
             format.html { redirect_to pets_toggle_index_path, notice: "Pet was successfully created" }
             format.json { render :show, status: :created, location: @pet }
           else
@@ -96,6 +95,15 @@ class PetsController < ApplicationController
   end
 
   private
+
+    def data
+      pet_params.to_h.compact
+    end
+
+    def record_detail_data
+      location_params.to_h
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_pet
       @pet = Pet.find(params[:id])
