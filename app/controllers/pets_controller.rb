@@ -29,7 +29,9 @@ class PetsController < ApplicationController
   # POST /pets or /pets.json
   def create
     if params[:form_on_submit]
-      if pet_params[:lost_on].to_date < 3.years.ago || pet_params[:lost_on].to_date > Time.zone.now.to_date
+      check_date = Pets::DateHandleService.call(pet_params[:lost_on])
+
+      if check_date
         respond_to do |format|
           format.html {redirect_to new_pet_path, alert: "Date #{pet_params[:lost_on].to_date} is not valid!"}
         end
@@ -53,7 +55,9 @@ class PetsController < ApplicationController
 
   # PATCH/PUT /pets/1 or /pets/1.json
   def update
-     if pet_params[:lost_on].present? && (pet_params[:lost_on].to_date < 3.years.ago || pet_params[:lost_on].to_date > Time.zone.now.to_date)
+    check_date = Pets::DateHandleService.call(pet_params[:lost_on])
+
+    if pet_params[:lost_on].present? && check_date
       respond_to do |format|
         format.html {redirect_to edit_pet_path(@pet), alert: "Date #{pet_params[:lost_on].to_date} is not valid!"}
       end
