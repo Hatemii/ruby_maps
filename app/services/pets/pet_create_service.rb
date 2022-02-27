@@ -5,7 +5,7 @@ module Pets
       @data = args
     end
 
-    attr_reader :current_user
+    attr_reader :current_user, :data
 
     def call
       create_pet_process
@@ -16,7 +16,7 @@ module Pets
     end
 
     def attributes
-      @data[0].merge({ created_at: Time.current, updated_at: Time.current })
+      data[0].merge({ created_at: Time.current, updated_at: Time.current })
     end
   end
 end
