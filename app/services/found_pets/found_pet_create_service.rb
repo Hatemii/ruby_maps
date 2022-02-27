@@ -1,5 +1,5 @@
-module Pets
-  class PetCreateService < ApplicationService
+module FoundPets
+  class FoundPetCreateService < ApplicationService
     def initialize(current_user, *args)
       @current_user = current_user
       @data = args
@@ -8,11 +8,11 @@ module Pets
     attr_reader :current_user
 
     def call
-      create_pet_process
+      create_found_pet_process
     end
 
-    def create_pet_process
-      current_user.pets.create!(attributes)
+    def create_found_pet_process
+      current_user.found_pets.create!(attributes)
     end
 
     def attributes

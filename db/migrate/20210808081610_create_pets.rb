@@ -5,7 +5,7 @@ class CreatePets < ActiveRecord::Migration[6.1]
       t.string :description
       t.string :species
       t.string :breed
-      t.datetime :found_on 
+      t.datetime :found_on
       t.datetime :lost_on
       t.float :last_known_latitude
       t.float :last_known_longitude
