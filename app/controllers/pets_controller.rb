@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
   # check input date
-  include PetsHelper
+  include DateHelper
 
   # users can not craete, update, delet if they are not logged in!
   before_action :authenticate_user!, except: %i[index show]
@@ -37,7 +37,17 @@ class PetsController < ApplicationController
         end
       else
         @pet = Pets::PetCreateService.call(current_user, data)
-        create_response(@pet, record_detail_data)
+        respond_to do |format|
+        if @pet.save!
+          RecordDetails::RecordDetailService.call(@pet, record_detail_data)
+
+          format.html { redirect_to pets_toggle_index_path, notice: 'Pet was successfully created' }
+          format.json { render :show, status: :created, location: pet }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: pet.errors, status: :unprocessable_entity }
+        end
+    end
       end
     end
   end
@@ -49,14 +59,27 @@ class PetsController < ApplicationController
         format.html { redirect_to edit_pet_path(@pet), alert: "Date #{pet_params[:lost_on].to_date} is not valid!" }
       end
     else
-      update_response(@pet, pet_params, record_detail_data)
+      respond_to do |format|
+        if @pet.update(pet_params)
+          format.html { redirect_to @pet, notice: 'Pet was successfully updated' }
+          format.json { render :show, status: :ok, location: pet }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: pet.errors, status: :unprocessable_entity }
+        end
+      end
     end
   end
 
   # DELETE /pets/1 or /pets/1.json
   def destroy
     @pet = Pet.find(params[:id])
-    delete_response(@pet)
+    if @pet.destroy
+      respond_to do |format|
+        format.html { redirect_to pets_toggle_index_path, notice: 'Pet was successfully destroyed' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   def remove_image

@@ -18,8 +18,8 @@ module DeviseHelper
       `rails g devise:views` which will copy all of them again to your app.
     DEPRECATION
 
-    return "" if resource.errors.empty?
+    return '' if resource.errors.empty?
 
-    render "devise/shared/error_messages", resource: resource
+    render 'devise/shared/error_messages', resource: resource
   end
 end

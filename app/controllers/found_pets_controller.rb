@@ -1,5 +1,5 @@
 class FoundPetsController < ApplicationController
-  include FoundPetsHelper
+  include DateHelper
 
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_found_pet, only: %i[edit update]
@@ -30,7 +30,17 @@ class FoundPetsController < ApplicationController
         end
       else
         @found_pet = FoundPets::FoundPetCreateService.call(current_user, data)
-        create_response(@found_pet, location_params)
+        respond_to do |format|
+        if @found_pet.save
+          RecordDetails::RecordDetailService.call(@found_pet, record_detail_data)
+
+          format.html { redirect_to pets_toggle_index_path, notice: 'Pet was successfully created' }
+          format.json { render :show, status: :created, location: found_pet }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: found_pet.errors, status: :unprocessable_entity }
+        end
+      end
       end
     end
   end
@@ -43,13 +53,26 @@ class FoundPetsController < ApplicationController
         end
       end
     else
-      update_response(@found_pet, pet_params, location_params)
+      respond_to do |format|
+        if @found_pet.update(pet_params)
+          format.html { redirect_to @found_pet, notice: 'Pet was successfully updated' }
+          format.json { render :show, status: :ok, location: found_pet }
+        else
+          format.html { render :edit, status: :unprocessable_entity }
+          format.json { render json: found_pet.errors, status: :unprocessable_entity }
+        end
+      end
     end
   end
 
   def destroy
     @found_pet = FoundPet.find(params[:id])
-    delete_response(@found_pet)
+    if @found_pet.destroy
+      respond_to do |format|
+        format.html { redirect_to pets_toggle_index_path, notice: 'Pet was successfully destroyed' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   def remove_image
