@@ -31,16 +31,16 @@ class FoundPetsController < ApplicationController
       else
         @found_pet = FoundPets::FoundPetCreateService.call(current_user, data)
         respond_to do |format|
-        if @found_pet.save
-          RecordDetails::RecordDetailService.call(@found_pet, record_detail_data)
+          if @found_pet.save
+            RecordDetails::RecordDetailService.call(@found_pet, record_detail_data)
 
-          format.html { redirect_to pets_toggle_index_path, notice: 'Pet was successfully created' }
-          format.json { render :show, status: :created, location: found_pet }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: found_pet.errors, status: :unprocessable_entity }
+            format.html { redirect_to pets_toggle_index_path, notice: 'Pet was successfully created' }
+            format.json { render :show, status: :created, location: found_pet }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: found_pet.errors, status: :unprocessable_entity }
+          end
         end
-      end
       end
     end
   end

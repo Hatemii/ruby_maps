@@ -38,34 +38,37 @@ class PetsController < ApplicationController
       else
         @pet = Pets::PetCreateService.call(current_user, data)
         respond_to do |format|
-        if @pet.save!
-          RecordDetails::RecordDetailService.call(@pet, record_detail_data)
+          if @pet.save!
+            RecordDetails::RecordDetailService.call(@pet, record_detail_data)
 
-          format.html { redirect_to pets_toggle_index_path, notice: 'Pet was successfully created' }
-          format.json { render :show, status: :created, location: pet }
-        else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: pet.errors, status: :unprocessable_entity }
+            format.html { redirect_to pets_toggle_index_path, notice: 'Pet was successfully created' }
+            format.json { render :show, status: :created, location: pet }
+          else
+            format.html { render :new, status: :unprocessable_entity }
+            format.json { render json: pet.errors, status: :unprocessable_entity }
+          end
         end
-    end
       end
     end
   end
 
   # PATCH/PUT /pets/1 or /pets/1.json
   def update
-    if pet_params[:lost_on].present? && check_date_helper(pet_params[:lost_on])
-      respond_to do |format|
-        format.html { redirect_to edit_pet_path(@pet), alert: "Date #{pet_params[:lost_on].to_date} is not valid!" }
-      end
-    else
-      respond_to do |format|
-        if @pet.update(pet_params)
-          format.html { redirect_to @pet, notice: 'Pet was successfully updated' }
-          format.json { render :show, status: :ok, location: pet }
-        else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: pet.errors, status: :unprocessable_entity }
+    if params[:form_on_update]
+      if pet_params[:lost_on].present? && check_date_helper(pet_params[:lost_on])
+        respond_to do |format|
+          format.html { redirect_to edit_pet_path(@pet), alert: "Date #{pet_params[:lost_on].to_date} is not valid!" }
+        end
+      else
+        respond_to do |format|
+          if @pet.update(pet_params)
+            @pet.record_details.update(record_detail_data) if record_detail_data.present?
+            format.html { redirect_to @pet, notice: 'Pet was successfully updated' }
+            format.json { render :show, status: :ok, location: pet }
+          else
+            format.html { render :edit, status: :unprocessable_entity }
+            format.json { render json: pet.errors, status: :unprocessable_entity }
+          end
         end
       end
     end
@@ -103,7 +106,7 @@ class PetsController < ApplicationController
   end
 
   def record_detail_data
-    location_params.to_h
+    location_params.to_h.compact
   end
 
   # Use callbacks to share common setup or constraints between actions.

@@ -1,6 +1,5 @@
 module Pets
   class DateHandleService < ApplicationService
-
     def initialize(date)
       @date = date
     end

@@ -92,6 +92,55 @@
 
             <br />
 
+            <button class="btn btn-dark hide">Location Details</button>
+            <div class="location_details_hidden">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <%= form.label :route %><br>
+                    <%= form.text_field :route, class: 'form-control' , value:"not-available", 'data-target'=> "maps.route",
+                      :readonly => true %>
+                </div>
+            
+                <div class="form-group col-md-6">
+                  <%= form.label :street_number %><br>
+                    <%= form.text_field :street_number, class: 'form-control' , value:"not-available", 'data-target'=>
+                      "maps.street_number", :readonly => true %>
+                </div>
+              </div>
+            
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <%= form.label :neighborhood %><br>
+                    <%= form.text_field :neighborhood, class: 'form-control' , value:"not-available", 'data-target'=>
+                      "maps.neighborhood", :readonly => true %>
+                </div>
+            
+                <div class="form-group col-md-6">
+                  <%= form.label :postal_code %><br>
+                    <%= form.text_field :postal_code, class: 'form-control' , value:"not-available", 'data-target'=>
+                      "maps.postal_code", :readonly => true %>
+                </div>
+              </div>
+            
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <%= form.label :locality %><br>
+                    <%= form.text_field :locality, class: 'form-control' , value:"not-available", 'data-target'=> "maps.locality",
+                      :readonly => true %>
+                </div>
+            
+                <div class="form-group col-md-6">
+                  <%= form.label :country %><br>
+                    <%= form.text_field :country, class: 'form-control' , value:"not-available", 'data-target'=> "maps.country",
+                      :readonly => true %>
+                </div>
+              </div>
+            </div>
+
+            <%= render "jquery_toggles/location_details_toggle" %>
+            
+            <br />
+            <br />
             <div class="form-row">
               <div class="form-group col-md-6">
                 <%= form.label :description, "Description" %>
@@ -107,7 +156,7 @@
             
             <div class="form-row text-center">
               <div class="form-group col-md-6">
-                <%= form.submit "Save" , class: "btn btn-default btn-success" , style: 'color:black; font-weight: bold; width: 15rem' %>
+                <%= form.submit "Save" , name: "form_on_update",class: "btn btn-default btn-success" , style: 'color:black; font-weight: bold; width: 15rem' %>
               </div>
             </div>
           </form>
